@@ -5,7 +5,7 @@ import mapPin from "../assets/map-pin.png";
 import mail from "../assets/mail.png";
 import call from "../assets/call.png";
 
-const About = () => {
+const Contact = () => {
   return (
     <Layout>
       <div className="contact">
@@ -104,4 +104,4 @@ const About = () => {
   )
 }
 
-export default About;
+export default Contact;
