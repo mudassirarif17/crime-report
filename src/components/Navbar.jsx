@@ -14,7 +14,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className='bg-[#03302D] h-[9vh] md:h-[12vh]'>
+    <div className='bg-[#03302D] h-[9vh] md:h-[12vh] sticky top-0'>
 
       <div className="navbar flex w-[90vw] md:w-[85vw] h-[9vh] md:h-[12vh] mx-auto items-center justify-between">
 
@@ -40,7 +40,7 @@ const Navbar = () => {
 
       </div>
 
-      <div id='mbl-menu' className="mbl-menu md:hidden bg-[#03302D] text-white h-[33vh]">
+      <div id='mbl-menu' className="mbl-menu md:hidden  bg-[#03302D] text-white h-[33vh]">
 
         <ul className='space-y-4 mx-6 text-xl'>
           <li>Home</li>
