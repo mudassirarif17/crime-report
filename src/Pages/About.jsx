@@ -81,38 +81,41 @@ const About = () => {
             <img src={secondBg} alt="" />
           </div>
 
-          <div className="community flex">
-            <div className="comm-left bg-red-500 w-[50%] h-[50vh]">
+          <div className="community flex flex-col md:flex-row justify-between items-center">
+            <div className="comm-left flex  justify-between gap-2 w-[100%] md:w-[50%] h-[50vh]">
               <div className="comm-left-l">
-
+                <img className='h-[50vh] w-[32vh] md:w-[35vh]' src={laptop} alt="" />
               </div>
-              <div className="comm-left-r"></div>
+              <div className="comm-left-r flex flex-col justify-between">
+                <img className='h-[28vh] w-[33vh] md:w-[38vh]' src={manLaptop} alt="" />
+                <img className='h-[20vh] w-[33vh] md:w-[38vh]' src={community} alt="" />
+              </div>
             </div>
 
-            <div className="comm-right w-[50%] h-[50vh]">
+            <div className="comm-right md:w-[45%] ">
               <div className="top px-4">
-                <h1 className='font-bold text-4xl my-2'>Enhancing Community</h1>
-                <h1 className='font-bold text-4xl text-[#309689] my-2'>Safety Together</h1>
+                <h1 className='font-bold text-lg md:text-4xl my-2'>Enhancing Community</h1>
+                <h1 className='font-bold text-lg md:text-4xl text-[#309689] my-2'>Safety Together</h1>
                 <p className='font-light text-sm'>In our shared mission to enhance community safety, collaboration is key. By working together, residents, law enforcement, and local organizations can create a proactive approach to crime prevention. </p>
               </div>
 
               <div className="btm px-4 my-4">
-                <div className="btm-top flex">
-                  <div className="card-1 flex items-center">
+                <div className="btm-top flex flex-col md:flex-row">
+                  <div className="card-1 items-center flex">
                     <img className='w-[50px]' src={crown} alt="" />
                     <p className='text-sm font-bold'>Safe & Secure Community</p>
                   </div>
-                  <div className="card-2 flex items-center ml-5">
+                  <div className="card-2 flex items-center md:ml-5">
                     <img className='w-[50px]' src={ufile} alt="" />
                     <p className='text-sm font-bold'>Registering Complaints</p>
                   </div>
                 </div>
-                <div className="btm-btm my-2 flex">
-                <div className="card-1 flex items-center">
+                <div className="btm-btm my-2  flex flex-col md:flex-row">
+                  <div className="card-1 flex items-center">
                     <img className='w-[50px]' src={badge} alt="" />
                     <p className='text-sm font-bold'>Response Optimization</p>
                   </div>
-                  <div className="card-2 flex items-center ml-10">
+                  <div className="card-2 flex items-center md:ml-10">
                     <img className='w-[50px]' src={badgeu} alt="" />
                     <p className='text-sm font-bold'>Predictive Policing Solutions</p>
                   </div>
