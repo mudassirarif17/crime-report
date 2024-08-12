@@ -4,6 +4,7 @@ import Login from './Pages/Login'
 import CrimeReports from './Pages/CrimeReports'
 import About from './Pages/About'
 import Contact from './Pages/Contact'
+import CrimeResponse from './Pages/CrimeResponse'
 
 const App = () => {
   return (
@@ -11,7 +12,8 @@ const App = () => {
       {/* <SignUp/> */}
       {/* <Login /> */}
       {/* <CrimeReports/> */}
-      <About/>
+      <CrimeResponse/>
+      {/* <About/> */}
       {/* <Contact/> */}
     </div>
   )

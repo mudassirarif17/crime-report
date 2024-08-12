@@ -49,25 +49,25 @@ const About = () => {
             <div className="bg-between-btm my-5">
               <div className='grid cols-1 md:grid-cols-4 gap-4'>
 
-                <div className="card my-4 rounded-lg shadow-md flex flex-col items-center justify-center">
+                <div className="card cursor-pointer my-4 rounded-lg shadow-md flex flex-col items-center justify-center">
                   <img className='my-3' src={user} alt="user" />
                   <h1 className='text-xl font-bold text-center'>Register or Login</h1>
                   <p className='text-center font-light text-sm px-4'>Create an account or log in to access our features.</p>
                 </div>
 
-                <div className="card my-4 rounded-lg shadow-md flex flex-col items-center justify-center">
+                <div className="card cursor-pointer my-4 rounded-lg shadow-md flex flex-col items-center justify-center">
                   <img className='my-3' src={file} alt="user" />
                   <h1 className='text-xl font-bold text-center'>Report Crime</h1>
                   <p className='text-center font-light text-sm px-4'>Easily register your complaint and report crimes through our intuitive interface.</p>
                 </div>
 
-                <div className="card my-4 h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center">
+                <div className="card cursor-pointer my-4 h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center">
                   <img className='my-3' src={bcase} alt="user" />
                   <h1 className='text-xl font-bold text-center'>Response to Crimes</h1>
                   <p className='text-center font-light text-sm px-4'>Engage with the community by responding to crime reports and sharing information.</p>
                 </div>
 
-                <div className="card my-4 h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center">
+                <div className="card cursor-pointer my-4 h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center">
                   <img className='my-3' src={tick} alt="user" />
                   <h1 className='text-xl font-bold text-center'>View Crime Statistics</h1>
                   <p className='text-center font-light text-sm px-4'>Access detailed crime statistics and insights specific to Karachi.</p>
@@ -82,9 +82,9 @@ const About = () => {
           </div>
 
           <div className="community flex flex-col md:flex-row justify-between items-center">
-            <div className="comm-left flex  justify-between gap-2 w-[100%] md:w-[50%] h-[50vh]">
+            <div className="comm-left flex  justify-between gap-2 w-[100%] md:w-[45%] h-[50vh]">
               <div className="comm-left-l">
-                <img className='h-[50vh] w-[32vh] md:w-[35vh]' src={laptop} alt="" />
+                <img className='h-[50vh] w-[32vh] md:w-[37vh]' src={laptop} alt="" />
               </div>
               <div className="comm-left-r flex flex-col justify-between">
                 <img className='h-[28vh] w-[33vh] md:w-[38vh]' src={manLaptop} alt="" />
@@ -92,7 +92,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="comm-right md:w-[45%] ">
+            <div className="comm-right md:w-[50%] ">
               <div className="top px-4">
                 <h1 className='font-bold text-lg md:text-4xl my-2'>Enhancing Community</h1>
                 <h1 className='font-bold text-lg md:text-4xl text-[#309689] my-2'>Safety Together</h1>
