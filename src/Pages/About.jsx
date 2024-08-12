@@ -6,6 +6,13 @@ import file from "../assets/file.png";
 import bcase from "../assets/bcase (2).png";
 import tick from "../assets/tick.png";
 import user from "../assets/user.png";
+import ufile from "../assets/ufile.png";
+import crown from "../assets/crown.png";
+import badge from "../assets/badge.png";
+import badgeu from "../assets/badgeu.png";
+import laptop from "../assets/laptop.png";
+import manLaptop from "../assets/man-laptop.png";
+import community from "../assets/community.png";
 
 
 const About = () => {
@@ -15,7 +22,7 @@ const About = () => {
       <div className="about">
 
         <div className="hero bg-[#03302D] h-[35vh] text-white flex justify-center items-center">
-            <h1 className='text-5xl font-semibold'>About Us</h1>
+          <h1 className='text-5xl font-semibold'>About Us</h1>
         </div>
 
         <div className="desc w-[80vw] mx-auto my-10">
@@ -37,12 +44,83 @@ const About = () => {
             <div className="bg-between-top">
               <h1 className='text-xl font-semibold md:text-5xl md:font-bold text-center'>How it works</h1>
               <div className='bg-[#309689] w-[18vw] h-[3px] mx-auto my-2 md:my-5'></div>
+              <p className='text-center font-light text-sm'>Discover how to effectively use our portal to report crimes, respond to incidents, and access valuable crime statistics in Karachi.</p>
             </div>
-            <div className="bg-between-btm"></div>
+            <div className="bg-between-btm my-5">
+              <div className='grid cols-1 md:grid-cols-4 gap-4'>
+
+                <div className="card my-4 rounded-lg shadow-md flex flex-col items-center justify-center">
+                  <img className='my-3' src={user} alt="user" />
+                  <h1 className='text-xl font-bold text-center'>Register or Login</h1>
+                  <p className='text-center font-light text-sm px-4'>Create an account or log in to access our features.</p>
+                </div>
+
+                <div className="card my-4 rounded-lg shadow-md flex flex-col items-center justify-center">
+                  <img className='my-3' src={file} alt="user" />
+                  <h1 className='text-xl font-bold text-center'>Report Crime</h1>
+                  <p className='text-center font-light text-sm px-4'>Easily register your complaint and report crimes through our intuitive interface.</p>
+                </div>
+
+                <div className="card my-4 h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center">
+                  <img className='my-3' src={bcase} alt="user" />
+                  <h1 className='text-xl font-bold text-center'>Response to Crimes</h1>
+                  <p className='text-center font-light text-sm px-4'>Engage with the community by responding to crime reports and sharing information.</p>
+                </div>
+
+                <div className="card my-4 h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center">
+                  <img className='my-3' src={tick} alt="user" />
+                  <h1 className='text-xl font-bold text-center'>View Crime Statistics</h1>
+                  <p className='text-center font-light text-sm px-4'>Access detailed crime statistics and insights specific to Karachi.</p>
+                </div>
+
+              </div>
+            </div>
           </div>
 
-          <div className="first-bg my-8">
+          <div className="second-bg my-8">
             <img src={secondBg} alt="" />
+          </div>
+
+          <div className="community flex">
+            <div className="comm-left bg-red-500 w-[50%] h-[50vh]">
+              <div className="comm-left-l">
+
+              </div>
+              <div className="comm-left-r"></div>
+            </div>
+
+            <div className="comm-right w-[50%] h-[50vh]">
+              <div className="top px-4">
+                <h1 className='font-bold text-4xl my-2'>Enhancing Community</h1>
+                <h1 className='font-bold text-4xl text-[#309689] my-2'>Safety Together</h1>
+                <p className='font-light text-sm'>In our shared mission to enhance community safety, collaboration is key. By working together, residents, law enforcement, and local organizations can create a proactive approach to crime prevention. </p>
+              </div>
+
+              <div className="btm px-4 my-4">
+                <div className="btm-top flex">
+                  <div className="card-1 flex items-center">
+                    <img className='w-[50px]' src={crown} alt="" />
+                    <p className='text-sm font-bold'>Safe & Secure Community</p>
+                  </div>
+                  <div className="card-2 flex items-center ml-5">
+                    <img className='w-[50px]' src={ufile} alt="" />
+                    <p className='text-sm font-bold'>Registering Complaints</p>
+                  </div>
+                </div>
+                <div className="btm-btm my-2 flex">
+                <div className="card-1 flex items-center">
+                    <img className='w-[50px]' src={badge} alt="" />
+                    <p className='text-sm font-bold'>Response Optimization</p>
+                  </div>
+                  <div className="card-2 flex items-center ml-10">
+                    <img className='w-[50px]' src={badgeu} alt="" />
+                    <p className='text-sm font-bold'>Predictive Policing Solutions</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
 
