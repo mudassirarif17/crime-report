@@ -6,6 +6,12 @@ import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
+  const logout = () =>{
+    localStorage.removeItem('token');
+    navigate("/login");
+  }
+
+
   const toggleNavbar = () =>{
     if(document.getElementById('mbl-menu').classList.contains('hidden')){
       document.getElementById('mbl-menu').classList.remove('hidden')
@@ -31,8 +37,14 @@ const Navbar = () => {
         </ul>
 
         <div className="btns hidden md:block">
-          <Link to='/sign-in' className='text-white font-semibold mx-4 text-lg'>Login</Link>
-          <Link to='/sign-up' className='text-white font-semibold text-lg px-4 py-1 rounded-lg bg-[#309689]'>Register</Link>
+          {localStorage.getItem("token") ? 
+          <button onClick={logout} className='text-white font-semibold text-lg px-4 py-1 rounded-lg bg-[#309689]'>Logout</button>
+          : <>
+            <Link to='/sign-in' className='text-white font-semibold mx-4 text-lg'>Login</Link>
+            <Link to='/sign-up' className='text-white font-semibold text-lg px-4 py-1 rounded-lg bg-[#309689]'>Register</Link>
+          </>
+          }
+          
         </div>
 
         <div onClick={toggleNavbar} className="burger">
