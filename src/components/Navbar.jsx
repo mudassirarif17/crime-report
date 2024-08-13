@@ -41,7 +41,7 @@ const Navbar = () => {
 
       </div>
 
-      <div id='mbl-menu' className="mbl-menu md:hidden  bg-[#03302D] text-white h-[33vh]">
+      <div id='mbl-menu' className="mbl-menu md:hidden  bg-[#03302D] text-white py-2">
 
         <ul className='space-y-4 mx-6 text-xl'>
           <li><Link to='/'>Home</Link></li>
