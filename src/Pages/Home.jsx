@@ -3,6 +3,9 @@ import Layout from "../Pages/Layout";
 import bookmark from "../assets/bookmark.png";
 import cardLogo from "../assets/crime-card-icon.png";
 import quotes from "../assets/Quotes.png";
+import blog1 from "../assets/blog1.png";
+import blog2 from "../assets/blog2.png";
+import arrow from "../assets/arrow-right.png";
 
 
 
@@ -97,7 +100,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="response-people bg-[#dffaf6] my-10">
+        <div className="response-people bg-[#dffaf6] mt-10">
             <h1 className='text-center font-bold text-4xl py-5'>Response From People On Complaints</h1>
             <p className='text-center font-light'>At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum id ...</p>
           <div class="grid w-[85%] mx-auto cols-1 md:grid-cols-3 gap-4 py-10">
@@ -144,6 +147,38 @@ const Home = () => {
               </div>
             </div>
 
+          </div>
+        </div>
+
+        <div className='news-and-blog w-[90vw]  mx-auto my-10'>
+          <div className="desc">
+            <h1 className='text-xl md:text-3xl font-bold'>News and Blog Of Recent Crimes</h1>
+            <p className='py-3 text-sm md:text-md font-light'>Crime in Karachi: What’s Happening Now?</p>
+          </div>
+          <div className="btm my-4 flex flex-col md:flex-row justify-between">
+            <div className="btm-left w-[100%] md:w-[48%]">
+              <img src={blog2} alt="" />
+              <div className="desc py-2 px-2">
+                <p className="date text-sm font-light">17 Feb</p>
+                <h1 className='font-bold text-lg md:text-2xl'>CCTV footage: Thief uses child as a cover while lifting bike in Karachi
+                </h1>
+                <div className='flex gap-2 items-center my-2'>
+                  <h1 className='text-[#309689] text-sm md:text-md font-semibold'>Read More</h1>
+                  <img src={arrow} alt="" />
+                </div>
+              </div>
+            </div>
+            <div className="btm-right w-[100%] md:w-[48%]">
+              <img src={blog1} alt="" />
+              <div className="desc py-2 px-2">
+                <p className="date text-sm font-light">24 Jan</p>
+                <h1 className='font-bold text-lg md:text-2xl'>Lyari gang war criminals among 25 arrested in Karachi</h1>
+                <div className='flex gap-2 items-center my-2'>
+                  <h1 className='text-[#309689] text-sm md:text-md font-semibold'>Read More</h1>
+                  <img src={arrow} alt="" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
