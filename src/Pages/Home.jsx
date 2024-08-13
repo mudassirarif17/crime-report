@@ -2,6 +2,8 @@ import React from 'react'
 import Layout from "../Pages/Layout";
 import bookmark from "../assets/bookmark.png";
 import cardLogo from "../assets/crime-card-icon.png";
+import quotes from "../assets/Quotes.png";
+
 
 
 const Home = () => {
@@ -47,8 +49,102 @@ const Home = () => {
           <CrimeCard />
         </div>
 
-        <div className="crime-category">
-          
+        <div className="crime-category bg-[#dffaf6]">
+            <h1 className='text-center font-bold text-4xl py-5'>Browse by Crime Category</h1>
+            <p className='text-center font-light'>Explore Crime Types and Patterns</p>
+          <div class="grid w-[85%] mx-auto cols-1 md:grid-cols-4 gap-4 py-10">
+
+            <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
+              <h1 className='text-xl font-bold text-center'>MURDER</h1>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>20</p>
+            </div>
+
+            <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
+              <h1 className='text-xl font-bold text-center'>TARGETED KILLING</h1>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>50</p>
+            </div>
+
+            <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
+              <h1 className='text-xl font-bold text-center'>MURDER DURING ROBBERY</h1>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>10</p>
+            </div>
+
+            <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
+              <h1 className='text-xl font-bold text-center'>BOMB BLAST</h1>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>2</p>
+            </div>
+
+            <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
+              <h1 className='text-xl font-bold text-center'>HIGH WAY ROBBERY</h1>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>30</p>
+            </div>
+
+            <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
+              <h1 className='text-xl font-bold text-center'>BANK ROBBERY</h1>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>10</p>
+            </div>
+
+            <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
+              <h1 className='text-xl font-bold text-center'>CAR SNATCHING</h1>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>25</p>
+            </div>
+
+            <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
+              <h1 className='text-xl font-bold text-center'>GANG RAPE</h1>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>12</p>
+            </div>
+
+          </div>
+        </div>
+
+        <div className="response-people bg-[#dffaf6] my-10">
+            <h1 className='text-center font-bold text-4xl py-5'>Response From People On Complaints</h1>
+            <p className='text-center font-light'>At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum id ...</p>
+          <div class="grid w-[85%] mx-auto cols-1 md:grid-cols-3 gap-4 py-10">
+
+            <div className="card cursor-pointer my-0 md:my-4 rounded-lg shadow-md bg-white py-7">
+              <div className="desc px-5 py-5">
+                <h1 className='text-xl font-bold'>Robbery Incident Reported</h1>
+                <p className='font-light text-sm'>I witnessed the incident and immediately contacted the authorities. We need to work together to increase neighborhood watch programs to prevent further occurrences.</p>
+              </div>
+              <div className="icons px-5 flex justify-end">
+                <img src={quotes} alt="" />
+              </div>
+              <div className="anonymous px-5 flex items-center gap-2 text-md font-semibold">
+                <div className='bg-gray-300 w-[50px] h-[50px] rounded-full'></div>
+                <p>Anonymous</p>
+              </div>
+            </div>
+
+            <div className="card cursor-pointer my-0 md:my-4 rounded-lg shadow-md bg-white py-7">
+              <div className="desc px-5 py-5">
+                <h1 className='text-xl font-bold'>Snatching Incident on Main Street</h1>
+                <p className='font-light text-sm'>This is alarming! We should organize a community meeting to discuss safety measures and possibly install more street lights in the area.</p>
+              </div>
+              <div className="icons px-5 flex justify-end">
+                <img src={quotes} alt="" />
+              </div>
+              <div className="anonymous px-5 flex items-center gap-2 text-md font-semibold">
+                <div className='bg-gray-300 w-[50px] h-[50px] rounded-full'></div>
+                <p>Anonymous</p>
+              </div>
+            </div>
+
+            <div className="card cursor-pointer my-0 md:my-4 rounded-lg shadow-md bg-white py-7">
+              <div className="desc px-5 py-5">
+                <h1 className='text-xl font-bold'>Addressing Gang Rape</h1>
+                <p className='font-light text-sm'>This is a devastating incident that requires urgent action. We must support the victims and advocate for stronger community support services and educational programs ...</p>
+              </div>
+              <div className="icons px-5 flex justify-end">
+                <img src={quotes} alt="" />
+              </div>
+              <div className="anonymous px-5 flex items-center gap-2 text-md font-semibold">
+                <div className='bg-gray-300 w-[50px] h-[50px] rounded-full'></div>
+                <p>Anonymous</p>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>
