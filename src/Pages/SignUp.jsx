@@ -42,8 +42,9 @@ const SignUp = () => {
             setEmail('');
             setPassword('');
             setImage(null);
+            // localStorage.setItem("token" , res.token)
             setTimeout(()=>{
-              navigate('/sign-in');
+              navigate('/');
             },1000)
             toast.success("User Created", {
               position: "top-right",

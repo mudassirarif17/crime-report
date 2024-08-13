@@ -9,11 +9,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const [email , setEmail] = useState("");
-  const [password , setPassword] = useState("");
+    const [password , setPassword] = useState("");
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const loginHandle = async (e) =>{
+    const loginHandle = async (e) =>{
 
     e.preventDefault();
     const res = await fetch(`http://localhost:5000/api/auth/login` , {
@@ -26,9 +26,9 @@ const Login = () => {
 
     const loginData = await res.json();
     if(loginData.error){
-      toast.error(loginData.error, {
+      toast.error("Invalid Credential", {
         position: "top-right",
-        autoClose: 5000,  // Duration in milliseconds
+        autoClose: 1000,  // Duration in milliseconds
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -89,7 +89,7 @@ const Login = () => {
                                 <input value={password} onChange={(e)=>setPassword(e.target.value)} placeholder='Password' type="password" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
                             </div>
                             <div className='my-8 ml-3'>
-                                <button onClick={loginHandle} className='bg-[#309689] text-white w-[95%] md:w-[73%] py-2 rounded-lg text-lg font-semibold'>Register</button>
+                                <button onClick={loginHandle} className='bg-[#309689] text-white w-[95%] md:w-[73%] py-2 rounded-lg text-lg font-semibold'>Login</button>
                             </div>
                         </div>
                     </div>

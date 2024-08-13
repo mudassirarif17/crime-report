@@ -2,13 +2,18 @@ import React from 'react'
 import logo from "../assets/footerlogo.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+
 
 
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+
   const logout = () =>{
     localStorage.removeItem('token');
-    navigate("/login");
+    navigate("/");
   }
 
 

@@ -114,7 +114,9 @@ const CrimeResponse = () => {
                             </div>
 
                             <div className="inp my-4">
-                                <button className='bg-[#309689] text-white px-6 py-1 rounded-lg font-semibold'>Send Message</button>
+                                {
+                                    localStorage.getItem("token") ? <button className='bg-[#309689] text-white px-6 py-1 rounded-lg font-semibold'>Send Message</button> : <button className='bg-[#309689] text-white px-6 py-1 rounded-lg font-semibold'>Send Message Disabled</button>
+                                }
                             </div>
 
                             
