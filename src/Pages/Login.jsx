@@ -1,11 +1,65 @@
-import React from 'react';
+import React , {useState} from 'react'
 import logo from "../assets/logo.png";
 import upper from "../assets/uperimage.png";
 import back from "../assets/backimage.png";
+import { useNavigate } from 'react-router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Login = () => {
+    const [email , setEmail] = useState("");
+  const [password , setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const loginHandle = async (e) =>{
+
+    e.preventDefault();
+    const res = await fetch(`http://localhost:5000/api/auth/login` , {
+      method : "POST",
+      headers : {
+        'content-type' : "application/json"
+      },
+      body : JSON.stringify({email , password})
+    })
+
+    const loginData = await res.json();
+    if(loginData.error){
+      toast.error(loginData.error, {
+        position: "top-right",
+        autoClose: 5000,  // Duration in milliseconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+    else{
+      toast.success("Logged In", {
+        position: "top-right",
+        autoClose: 5000,  // Duration in milliseconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      localStorage.setItem('token' , loginData.token)
+      setTimeout(()=>{
+        navigate('/');
+      }, 3000)
+    }
+
+    setEmail("");
+    setPassword("");
+
+  }
+
     return (
         <div>
+            <ToastContainer />
             <div className="signup flex">
 
                 <div className="signup-left hidden md:block w-[60vw] h-[100vh]">
@@ -28,14 +82,14 @@ const Login = () => {
                         <div className="inputs mt-6">
                             <div className='my-5 ml-3'>
                                 <p className='text-sm mb-3'>Email</p>
-                                <input placeholder='Email' type="email" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
+                                <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='Email' type="email" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
                             </div>
                             <div className='my-5 ml-3'>
                                 <p className='text-sm mb-3'>Password</p>
-                                <input placeholder='Password' type="password" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
+                                <input value={password} onChange={(e)=>setPassword(e.target.value)} placeholder='Password' type="password" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
                             </div>
                             <div className='my-8 ml-3'>
-                                <button className='bg-[#309689] text-white w-[95%] md:w-[73%] py-2 rounded-lg text-lg font-semibold'>Register</button>
+                                <button onClick={loginHandle} className='bg-[#309689] text-white w-[95%] md:w-[73%] py-2 rounded-lg text-lg font-semibold'>Register</button>
                             </div>
                         </div>
                     </div>
