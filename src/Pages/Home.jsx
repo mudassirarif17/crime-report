@@ -6,6 +6,7 @@ import quotes from "../assets/Quotes.png";
 import blog1 from "../assets/blog1.png";
 import blog2 from "../assets/blog2.png";
 import arrow from "../assets/arrow-right.png";
+import laptopPeople from "../assets/laptop-people.png";
 
 
 
@@ -100,22 +101,16 @@ const Home = () => {
           </div>
         </div>
         
-        <div className="community flex flex-col md:flex-row justify-between items-center">
-            <div className="comm-left flex  justify-between gap-2 w-[100%] md:w-[45%] h-[50vh]">
-              <div className="comm-left-l">
-                {/* <img className='h-[50vh] w-[32vh] md:w-[37vh]' src={laptop} alt="" /> */}
-              </div>
-              <div className="comm-left-r flex flex-col justify-between">
-                {/* <img className='h-[28vh] w-[33vh] md:w-[38vh]' src={manLaptop} alt="" /> */}
-                {/* <img className='h-[20vh] w-[33vh] md:w-[38vh]' src={community} alt="" /> */}
-              </div>
+        <div className="community flex md:w-[65vw] mx-auto flex-col md:flex-row md:justify-between items-center my-5">
+            <div className="comm-left flex  justify-between gap-2 w-[90%] md:w-[45%] h-[50vh]">
+              <img src={laptopPeople} alt="" />
             </div>
 
-            <div className="comm-right md:w-[50%] ">
+            <div className="comm-right w-[93%] md:w-[50%] ">
               <div className="top px-4">
                 <h1 className='font-bold text-lg md:text-4xl my-2'>Enhancing Community</h1>
                 <h1 className='font-bold text-lg md:text-4xl text-[#309689] my-2'>Safety Together</h1>
-                <p className='font-light text-sm'>In our shared mission to enhance community safety, collaboration is key. By working together, residents, law enforcement, and local organizations can create a proactive approach to crime prevention. </p>
+                <p className='font-light text-sm'>In our shared mission to enhance community safety, collaboration is key. By working together, residents, law enforcement, and local organizations can create a proactive approach to crime prevention. Our platform encourages open communication and reporting, empowering everyone to contribute to a safer environment. With access to real-time data and resources, community members can stay informed about potential risks. Together, we can build a resilient community that prioritizes safety and well-being. Join us in fostering a culture of vigilance and support, where everyone plays a role in keeping our neighborhoods secure.</p>
               </div>
 
               <div className="btm px-4 my-4">
@@ -132,7 +127,7 @@ const Home = () => {
           </div>
 
         <div className="response-people bg-[#dffaf6] mt-10">
-            <h1 className='text-center font-bold text-4xl py-5'>Response From People On Complaints</h1>
+            <h1 className='text-center font-bold text-3xl py-5'>Response From People On Complaints</h1>
             <p className='text-center font-light'>At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum id ...</p>
           <div class="grid w-[85%] mx-auto cols-1 md:grid-cols-3 gap-4 py-10">
 
