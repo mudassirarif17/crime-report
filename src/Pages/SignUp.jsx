@@ -1,11 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router';
 import logo from "../assets/logo.png";
 import upper from "../assets/uperimage.png";
 import back from "../assets/backimage.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+
 
 const SignUp = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [image , setImage] = useState('');
+
+    const navigate = useNavigate();
+
+    const SignUpHandle = async (e) => {
+        const formdata = new FormData();
+        formdata.append('username' , name);
+        formdata.append('email' , email);
+        formdata.append('password' , password);
+        formdata.append('image' , image);
+        try {
+          e.preventDefault();
+          const res = await axios.post(`http://localhost:5000/api/auth/register` , formdata , {
+            headers : {"Content-Type" : "multipart/form-data"}
+          });
+          if(res.error){
+            toast.error(res.error, {
+              position: "top-right",
+              autoClose: 1000,  // Duration in milliseconds
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }else{
+            setName('');
+            setEmail('');
+            setPassword('');
+            setImage(null);
+            setTimeout(()=>{
+              navigate('/sign-in');
+            },1000)
+            toast.success("User Created", {
+              position: "top-right",
+              autoClose: 1000,  // Duration in milliseconds
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
+        } catch (error) {
+          console.log("Error" , error);
+        }
+      }
+
+
     return (
         <div>
+            <ToastContainer />
             <div className="signup flex">
 
                 <div className="signup-left hidden md:block w-[60vw] h-[100vh]">
@@ -27,23 +85,23 @@ const SignUp = () => {
                         <h1 className='font-semibold text-xl md:text-4xl ml-3'>Register Your Account</h1>
                         <div className="inputs mt-6">
                             <div className='my-3 ml-3'>
-                                <input placeholder='Username' type="text" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
+                                <input value={name} onChange={(e) => setName(e.target.value)} placeholder='Username' type="text" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
                                 <p className='text-sm mt-3'>Please use format username@bankname</p>
                             </div>
                             <div className='my-3 ml-3'>
-                                <input placeholder='Email' type="email" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
+                                <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' type="email" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
                                 <p className='text-sm mt-3'>Email</p>
                             </div>
                             <div className='my-3 ml-3'>
-                                <input type="file" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
+                                <input name="image" onChange={(e) => setImage(e.target.files[0])} type="file" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
                                 <p className='text-sm mt-3'>Profile</p>
                             </div>
                             <div className='my-3 ml-3'>
-                                <input placeholder='Password' type="password" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
+                                <input onChange={(e) => setPassword(e.target.value)} value={password} placeholder='Password' type="password" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
                                 <p className='text-sm mt-3'>Password</p>
                             </div>
                             <div className='my-3 ml-3'>
-                                <button className='bg-[#309689] text-white w-[95%] md:w-[73%] py-2 rounded-lg text-lg font-semibold'>Register</button>
+                                <button onClick={SignUpHandle} className='bg-[#309689] text-white w-[95%] md:w-[73%] py-2 rounded-lg text-lg font-semibold'>Register</button>
                             </div>
                         </div>
                     </div>
