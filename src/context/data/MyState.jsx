@@ -11,12 +11,12 @@ function MyState(props) {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'x-auth-token': localStorage.getItem('token')
+            'auth-token': localStorage.getItem('token')
           }
         });
     
         let userData = await res.json();
-        console.log(userData);
+        // console.log(userData);
         setUser(userData);
       }
 

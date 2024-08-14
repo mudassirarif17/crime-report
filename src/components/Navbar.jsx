@@ -36,6 +36,7 @@ const Navbar = () => {
     }
   }
 
+  console.log("my user ", user)
   return (
     <div className='bg-[#03302D] h-[9vh] md:h-[12vh] sticky top-0'>
 
@@ -57,7 +58,7 @@ const Navbar = () => {
           <div className='flex items-center'>
           <div>
             {/* <img className='w-[50px] h-[50px] rounded-full mb-6' src={path+user.image} alt="some error"/> */}
-            {/* <h1 className='text-white'>{user.name}</h1> */}
+            <h1 className='text-white'>{user?.name}</h1>
             </div>
           <button onClick={logout} className='text-white font-semibold text-lg px-4 py-1 rounded-lg bg-[#309689]'>Logout</button>
           </div>

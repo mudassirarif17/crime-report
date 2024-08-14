@@ -1,62 +1,86 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Layout from "../Pages/Layout";
 import location from "../assets/location.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
-
-
 const CrimeResponse = () => {
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
-    const [image , setImage] = useState('');
+    const [image, setImage] = useState('');
+    const [allNotes, setAllNotes] = useState([]);
+    const [searchNotes, setSearchNotes] = useState([]);
+    const [search, setSearch] = useState("");
+    const [loading, setLoading] = useState(false); // Added loading state
 
     const addPostHandle = async (e) => {
-        const formdata = new FormData();
-        formdata.append('title' , title);
-        formdata.append('description' , desc);
-        formdata.append('image' , image);
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', desc);
+        formData.append('image', image);
 
         try {
-          e.preventDefault();
-          const res = await axios.post(`http://localhost:5000/api/posts/add_post` , formdata , {
-            headers : {
-                "Content-Type" : "multipart/form-data",
-                'auth-token': localStorage.getItem("token")
+            e.preventDefault();
+            const res = await axios.post(`http://localhost:5000/api/posts/add_post`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    'auth-token': localStorage.getItem("token")
+                }
+            });
+            if (res.error) {
+                toast.error(res.error, {
+                    position: "top-right",
+                    autoClose: 1000,  
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            } else {
+                setTitle('');
+                setDesc('');
+                setImage(null);
+                toast.success("Report Added", {
+                    position: "top-right",
+                    autoClose: 1000,  
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }
-          });
-          if(res.error){
-            toast.error(res.error, {
-              position: "top-right",
-              autoClose: 1000,  // Duration in milliseconds
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          }else{
-            setTitle('');
-            setDesc('');
-            setImage(null);
-            // localStorage.setItem("token" , res.token)
-            toast.success("Report Added", {
-              position: "top-right",
-              autoClose: 1000,  // Duration in milliseconds
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          }
         } catch (error) {
-          console.log("Error" , error);
+            console.log("Error", error);
         }
-      }
+    }
 
+    const getAllPosts = async () => {
+        setLoading(true);
+        try {
+            const res = await fetch("http://localhost:5000/api/posts/getallposts", {
+                method: `GET`,
+                headers: {
+                    'Content-Type': "application/json", // Corrected typo here
+                    'auth-token': localStorage.getItem('token')
+                }
+            });
+            const notesData = await res.json();
+            console.log(notesData); // Check the response here
+            setAllNotes(notesData);
+            setSearchNotes(notesData);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    }
 
+    useEffect(() => {
+        getAllPosts();
+    }, []);
 
     return (
         <Layout>
@@ -71,13 +95,13 @@ const CrimeResponse = () => {
                     <div className="crime-response-left w-[100%] md:w-[65%]">
 
                         <div className="top w-[100%] md:w-[95%] px-4 my-16">
-                            <div class="grid cols-1 md:grid-cols-3 gap-4 ">
+                            <div className="grid cols-1 md:grid-cols-3 gap-4 ">
                                 <div className="card cursor-pointer bg-[#077265] h-[25vh] md:h-[32vh] rounded-lg">
                                     <p className='font-semibold text-xl text-center my-4'>Complaint Box</p>
                                     <p className='text-center text-3xl font-semibold my-5'>3</p>
                                 </div>
                                 <div className="card cursor-pointer bg-[#077265] h-[25vh] md:h-[32vh] rounded-lg">
-                                    <p className='font-semibold text-xl text-center my-4'>Compliants</p>
+                                    <p className='font-semibold text-xl text-center my-4'>Complaints</p>
                                     <p className='text-center text-3xl font-semibold my-5'>99</p>
                                 </div>
                                 <div className="card cursor-pointer bg-[#077265] h-[25vh] md:h-[32vh] rounded-lg">
@@ -104,7 +128,7 @@ const CrimeResponse = () => {
 
                         <div className="top w-[33%] flex items-center justify-between">
                             <div className="top-left">
-                                <img className='h-[30px]' src={ location } alt="" />
+                                <img className='h-[30px]' src={ location } alt="location" />
                             </div>
                             <div className="top-right">
                                 <p className='font-bold text-lg'>Location</p>
@@ -128,64 +152,45 @@ const CrimeResponse = () => {
                 <div className="crime-response-btm flex flex-col md:flex-row w-[90vw] mx-auto my-10 ">
 
                     <div className="crime-response-left w-[100%] md:w-[65%] mb-10">
-
-                        <tr className="btm mb-3 bg-[#309689] w-[100%] md:w-[96%] h-[6vh] md:h-[9vh] rounded-xl flex items-center cursor-pointer">
-                            <td className='w-[10%] text-center text-lg'>1</td>
-                            <td className='w-[50%] text-lg'>Complaint</td>
+                    {
+                    searchNotes.map((data, index) => (
+                        <tr key={index} className="btm mb-3 bg-[#309689] w-[100%] md:w-[96%] h-[6vh] md:h-[9vh] rounded-xl flex items-center cursor-pointer">
+                            <td className='w-[10%] text-center text-lg'>{index + 1}</td>
+                            <td className='w-[50%] text-lg'>{data.title}</td>
                             <td className='w-[40%] text-lg'>View</td>
                         </tr>
-
-                        <tr className="btm mb-3 bg-[#309689] w-[100%] md:w-[96%] h-[6vh] md:h-[9vh] rounded-xl flex items-center cursor-pointer">
-                            <td className='w-[10%] text-center text-lg'>1</td>
-                            <td className='w-[50%] text-lg'>Complaint</td>
-                            <td className='w-[40%] text-lg'>View</td>
-                        </tr>
-
-                        <tr className="btm mb-3 bg-[#309689] w-[100%] md:w-[96%] h-[6vh] md:h-[9vh] rounded-xl flex items-center cursor-pointer">
-                            <td className='w-[10%] text-center text-lg'>1</td>
-                            <td className='w-[50%] text-lg'>Complaint</td>
-                            <td className='w-[40%] text-lg'>View</td>
-                        </tr>
-
+                    ))    
+                    }
                     </div>
 
                     <div className="crime-response-right bg-[#EBF5F4] w-[100%] md:w-[30%] rounded-lg px-4 py-4 ">
-                        <h1 className='font-semibold text-3xl my-2'>Add Complain</h1>
+                        <h1 className='font-semibold text-3xl my-2'>Add Complaint</h1>
                         {
                             localStorage.getItem("token") ? "" : <p className='text-red-500 text-center'>
-                                Please sign in to register your complain
+                                Please sign in to register your complaint
                             </p>
                         }
                         <div className="inputs">
 
                             <div className="inp my-4">
-                                <input value={title} onChange={(e) => setTitle(e.target.value)} className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Complaint Title'/>
+                                <input value={ title } onChange={ (e) => setTitle(e.target.value) } className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Complaint Title' />
                             </div>
 
                             <div className="inp my-4">
                                 <p className='text-sm mt-3 pl-2'>Report image</p>
-                                <input name="image" onChange={(e) => setImage(e.target.files[0])} type="file" className='w-[100%] py-1 px-2 rounded-lg outline-none' />
+                                <input name="image" onChange={ (e) => setImage(e.target.files[0]) } type="file" className='w-[100%] py-1 px-2 rounded-lg outline-none' />
                             </div>
 
                             <div className="inp my-4">
-                                <textarea value={desc} onChange={(e) => setDesc(e.target.value)} rows={8} className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Complaint Description'/>
+                                <textarea value={ desc } onChange={ (e) => setDesc(e.target.value) } rows={ 8 } className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Complaint Description' />
                             </div>
 
-
-                            <div className="inp my-4">
-                                {
-                                    localStorage.getItem("token") ? <button onClick={addPostHandle} className='bg-[#309689] text-white px-6 py-1 rounded-lg font-semibold'>Add Report</button> : <button class="bg-gray-300 px-4 py-2 rounded-md cursor-not-allowed opacity-50" disabled>
-                                    Add Report
-                                  </button>
-                                
-                                }
+                            <div className="btn text-center my-4">
+                                <button onClick={ addPostHandle } disabled={ !localStorage.getItem("token") } className='bg-[#03302D] disabled:bg-[#666] py-2 w-[100%] text-white rounded-lg'>Add Report</button>
                             </div>
-
-                            
 
                         </div>
                     </div>
-
                 </div>
 
             </div>
@@ -193,4 +198,4 @@ const CrimeResponse = () => {
     )
 }
 
-export default CrimeResponse
+export default CrimeResponse;
