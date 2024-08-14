@@ -3,6 +3,19 @@ const router = express.Router();
 import Post from "../models/Post.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 
+
+
+router.get("/getallposts" , async (req , res)=>{
+    try {
+        const notes = await Post.find();
+        res.json(notes) 
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error : "Internal Server Error"})
+    }
+})
+
+
 // Create a post
 router.post('/add_post', authMiddleware, async (req, res) => {
     const { title, description } = req.body;

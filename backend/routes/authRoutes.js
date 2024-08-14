@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import multer from "multer";
 import "dotenv/config.js"
+import authMiddleware from "../middleware/authMiddleware.js";
+
 
 
 
@@ -94,6 +96,8 @@ router.post('/register', upload.single("image") ,async (req, res) => {
 //     }
 // });
 
+
+// Login Route
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
@@ -140,7 +144,21 @@ router.post("/login", async (req, res) => {
 });
 
 
+// Route 3 get a user detail
+router.get('/getuser' , authMiddleware ,async (req , res)=>{
+    try {
+        const userId = req.userId;
+        console.log(userId);
+        const user = await User.findById(userId).select("-password");
+        res.send(user);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error : "Internal Server Error"});
+    }
+})
 
 
-// module.exports = router;
+
+
+
 export default router;
