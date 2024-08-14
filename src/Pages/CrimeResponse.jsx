@@ -4,10 +4,13 @@ import location from "../assets/location.png";
 import myContext from '../context/data/myContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AiOutlineLike } from "react-icons/ai";
+import { AiFillAlert, AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
+import { AiFillLike } from "react-icons/ai";
+import { AiFillDislike } from "react-icons/ai";
+
 
 
 
@@ -17,10 +20,11 @@ const CrimeResponse = () => {
 
 
     const context = useContext(myContext);
-    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts , likeHandler , disLikeHandler } = context;
+    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts , likeHandler , disLikeHandler , user , setUser , userData } = context;
 
     useEffect(() => {
         getAllPosts();
+        userData();
     }, []);
 
     const showCommentModal = () => {
@@ -118,7 +122,7 @@ const CrimeResponse = () => {
                                     <p className='font-light text-sm'>{ data.description} ...</p>
                                 </div>
                                 <div className="icons px-5 flex justify-end">
-                                    <img src={ "" } alt="" />
+                                    {/* <img className='w-[50px] h-[50px]' src={`src/images/${user.image}`} alt="" /> */}
                                 </div>
                                 <div className="anonymous px-5 flex items-center gap-2 text-md font-semibold">
                                     <div className='bg-gray-300 w-[50px] h-[50px] rounded-full'></div>
@@ -128,17 +132,21 @@ const CrimeResponse = () => {
                                     </div>
                                 </div>
                                 <div className='px-5 pt-4 response flex justify-between items-center'>
-                                    <div onClick={() =>likeHandler(data._id)} className='flex gap-1 items-center'>
+                                    <div className='flex gap-1 items-center'>
                                         <div className='num'>{data.likes.length}</div>
-                                        <div className="icon"><AiOutlineLike className='text-xl'/></div>
+                                        <div className="icon flex">
+                                            {data.likes.includes(user._id) ? <AiFillLike className='text-xl' /> : data.dislikes.includes(user._id) ? <AiOutlineLike className='text-xl opacity-50' disabled/> : <AiOutlineLike onClick={() =>likeHandler(data._id)} className='text-xl' />}
+                                        </div>
                                     </div>
                                     <div onClick={showCommentModal} className='flex gap-1 items-center'>
                                         <div className='num'>0</div>
                                         <div className="icon"><FaRegComment/></div>
                                     </div>
-                                    <div onClick={() =>disLikeHandler(data._id)} className='flex gap-1 items-center'>
+                                    <div className='flex gap-1 items-center'>
                                         <div className='num'>{data.dislikes.length}</div>
-                                        <div className="icon"><AiOutlineDislike className='text-xl'/></div>
+                                        <div className="icon flex">
+                                                {data.dislikes.includes(user._id) ? <AiFillDislike className='text-xl' /> : data.likes.includes(user._id) ? <AiOutlineDislike className='text-xl opacity-50' disabled/> : <AiOutlineDislike onClick={() =>disLikeHandler(data._id)} className='text-xl' />}
+                                            </div>
                                     </div>
                                 </div>
                             </div>

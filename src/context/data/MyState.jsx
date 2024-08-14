@@ -16,6 +16,7 @@ function MyState(props) {
     const [searchNotes, setSearchNotes] = useState([]);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false); // Added loading state
+    // const [islike , setIslike] = useState(false);
 
     const addPostHandle = async (e) => {
         const formData = new FormData();
