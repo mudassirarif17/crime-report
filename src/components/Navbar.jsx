@@ -87,8 +87,15 @@ const Navbar = () => {
         </ul>
 
         <div className="btns mx-6 my-4">
-          <Link to='/sign-in' className='text-white font-semibold text-lg mr-2'>Login</Link>
-          <Link to='/sign-up' className='text-white font-semibold text-lg px-4 py-1 rounded-lg bg-[#309689]'>Register</Link>
+          {
+            localStorage.getItem("token") ? 
+              <button onClick={logout} className='text-white font-semibold text-lg px-4 py-1 rounded-lg bg-[#309689]'>Logout</button>
+            : <>
+              <Link to='/sign-in' className='text-white font-semibold text-lg mr-2'>Login</Link>
+              <Link to='/sign-up' className='text-white font-semibold text-lg px-4 py-1 rounded-lg bg-[#309689]'>Register</Link>
+            </>
+          }
+          
         </div>
 
       </div>

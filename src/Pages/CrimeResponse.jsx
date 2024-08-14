@@ -14,8 +14,10 @@ import { IoIosClose } from "react-icons/io";
 
 
 const CrimeResponse = () => {
+
+
     const context = useContext(myContext);
-    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts } = context;
+    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts , likeHandler , disLikeHandler } = context;
 
     useEffect(() => {
         getAllPosts();
@@ -126,16 +128,16 @@ const CrimeResponse = () => {
                                     </div>
                                 </div>
                                 <div className='px-5 pt-4 response flex justify-between items-center'>
-                                    <div className='flex gap-1 items-center'>
-                                        <div className='num'>0</div>
+                                    <div onClick={() =>likeHandler(data._id)} className='flex gap-1 items-center'>
+                                        <div className='num'>{data.likes.length}</div>
                                         <div className="icon"><AiOutlineLike className='text-xl'/></div>
                                     </div>
                                     <div onClick={showCommentModal} className='flex gap-1 items-center'>
                                         <div className='num'>0</div>
                                         <div className="icon"><FaRegComment/></div>
                                     </div>
-                                    <div className='flex gap-1 items-center'>
-                                        <div className='num'>0</div>
+                                    <div onClick={() =>disLikeHandler(data._id)} className='flex gap-1 items-center'>
+                                        <div className='num'>{data.dislikes.length}</div>
                                         <div className="icon"><AiOutlineDislike className='text-xl'/></div>
                                     </div>
                                 </div>

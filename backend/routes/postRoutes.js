@@ -72,11 +72,11 @@ router.put('/like/:id', authMiddleware, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
 
-        if (post.likes.includes(req.user.id)) {
+        if (post.likes.includes(req.userId)) {
             return res.status(400).json({ msg: 'Post already liked' });
         }
 
-        post.likes.push(req.user.id);
+        post.likes.push(req.userId);
         await post.save();
 
         res.json(post.likes);
@@ -91,11 +91,11 @@ router.put('/dislike/:id', authMiddleware, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
 
-        if (post.dislikes.includes(req.user.id)) {
+        if (post.dislikes.includes(req.userId)) {
             return res.status(400).json({ msg: 'Post already disliked' });
         }
 
-        post.dislikes.push(req.user.id);
+        post.dislikes.push(req.userId);
         await post.save();
 
         res.json(post.dislikes);

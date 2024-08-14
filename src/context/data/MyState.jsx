@@ -95,8 +95,34 @@ function MyState(props) {
         setUser(userData);
       }
 
+      const likeHandler = async (id) => {
+        const res = await fetch(`http://localhost:5000/api/posts/like/${id}`, {
+            'method': "PUT",
+            headers: {
+                'Content-Type': "application/json",
+                'auth-token': localStorage.getItem("token")
+            }
+        })
+
+        const postData = await res.json();
+        getAllPosts();
+      }
+
+      const disLikeHandler = async (id) => {
+        const res = await fetch(`http://localhost:5000/api/posts/dislike/${id}`, {
+            'method': "PUT",
+            headers: {
+                'Content-Type': "application/json",
+                'auth-token': localStorage.getItem("token")
+            }
+        })
+
+        const postData = await res.json();
+        getAllPosts();
+      }
+
     return (
-        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData}}>
+        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler}}>
             {props.children}
         </myContext.Provider>
     )
