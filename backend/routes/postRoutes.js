@@ -16,11 +16,29 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage : storage});
 
-
+// Get all posts
 router.get("/getallposts" , async (req , res)=>{
     try {
         const notes = await Post.find();
         res.json(notes) 
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error : "Internal Server Error"})
+    }
+})
+
+// Route get post by id
+router.get("/getpostbyid/:id" , async (req , res)=>{
+    const {id} = req.params;
+
+    try {
+       let notes = await Post.findById({_id : id});
+       if(notes){
+        return res.status(200).json(notes)
+       }
+       else{ 
+        return res.status(401).json({error : "Not Found"})
+       }
     } catch (error) {
         console.log(error);
         res.status(500).json({error : "Internal Server Error"})

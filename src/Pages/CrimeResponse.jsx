@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import Layout from "../Pages/Layout";
 import location from "../assets/location.png";
 import { ToastContainer, toast } from 'react-toastify';
@@ -80,7 +81,10 @@ const CrimeResponse = () => {
 
     useEffect(() => {
         getAllPosts();
-    }, []);
+    }, [searchNotes]);
+
+    const navigate = useNavigate();
+
 
     return (
         <Layout>
@@ -157,6 +161,7 @@ const CrimeResponse = () => {
                         <tr key={index} className="btm mb-3 bg-[#309689] w-[100%] md:w-[96%] h-[6vh] md:h-[9vh] rounded-xl flex items-center cursor-pointer">
                             <td className='w-[10%] text-center text-lg'>{index + 1}</td>
                             <td className='w-[50%] text-lg'>{data.title}</td>
+                            <td className='w-[50%] text-lg'>{data.description.slice(0,20) } ...</td>
                             <td className='w-[40%] text-lg'>View</td>
                         </tr>
                     ))    
