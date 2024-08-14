@@ -4,10 +4,11 @@ import location from "../assets/location.png";
 import myContext from '../context/data/myContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import hero from "../assets/hero (2).png"
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
+import { IoIosClose } from "react-icons/io";
+
 
 
 
@@ -18,9 +19,9 @@ const CrimeResponse = () => {
 
     useEffect(() => {
         getAllPosts();
-    }, [searchNotes]);
+    }, []);
 
-    const showModal = () => {
+    const showCommentModal = () => {
         if (document.getElementById('modal').classList.contains('hidden')) {
             document.getElementById('modal').classList.remove('hidden')
         } else {
@@ -129,7 +130,7 @@ const CrimeResponse = () => {
                                         <div className='num'>0</div>
                                         <div className="icon"><AiOutlineLike className='text-xl'/></div>
                                     </div>
-                                    <div className='flex gap-1 items-center'>
+                                    <div onClick={showCommentModal} className='flex gap-1 items-center'>
                                         <div className='num'>0</div>
                                         <div className="icon"><FaRegComment/></div>
                                     </div>
@@ -177,8 +178,34 @@ const CrimeResponse = () => {
             </div>
 
             {/* Modal code */ }
-            <div id="modal" className="mx-auto hidden modal rounded-xl bg-white shadow-xl h-[70vh] w-[50vw] fixed top-[24%] left-[25.3vw]">
+            <div id="modal" className="mx-auto hidden py-2 modal rounded-xl bg-white shadow-xl w-[100vw] md:w-[50vw] fixed top-[24%] md:left-[25.3vw]">
 
+                <div className='top px-5 py-5 flex justify-between'>
+                    <div className="left">
+                        <h1 className='font-bold text-xl'>Add Comment</h1>
+                    </div>
+                    <div onClick={showCommentModal} className="right cursor-pointer">
+                        <IoIosClose className='text-4xl'/>
+                    </div>
+                </div>
+
+                <div className="mid px-5">
+                    <ul>
+                        <li>comment 1</li>
+                        <li>comment 1</li>
+                        <li>comment 1</li>
+                        <li>comment 1</li>
+                    </ul>
+                </div>
+
+                <div className="btm px-5 py-5 flex items-center">
+                    <div className='w-[100%]'>
+                        <input className='px-3 py-3 bg-[#fcf7f7] rounded-lg w-[95%] outline-none' type="text" placeholder='Comment'/>
+                    </div>
+                    <div>
+                        <button className='bg-[#309689] text-white text-xl px-6 py-2 font-semibold rounded-lg'>Post</button>
+                    </div>
+                </div>
             </div>
 
         </Layout>
