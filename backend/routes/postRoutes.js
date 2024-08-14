@@ -1,8 +1,20 @@
 import express from "express";
 const router = express.Router();
 import Post from "../models/Post.js";
+import multer from "multer";
 import authMiddleware from "../middleware/authMiddleware.js";
 
+const storage = multer.diskStorage({
+    destination : function(req , file , cb){
+        cb(null , "../src/images");
+    },
+    filename : function(req , file , cb){
+        const uniqueSuffix = Date.now();
+        cb(null , uniqueSuffix + file.originalname)
+    }
+})
+
+const upload = multer({storage : storage});
 
 
 router.get("/getallposts" , async (req , res)=>{
@@ -17,20 +29,22 @@ router.get("/getallposts" , async (req , res)=>{
 
 
 // Create a post
-router.post('/add_post', authMiddleware, async (req, res) => {
+router.post('/add_post', authMiddleware , upload.single("image") , async (req, res) => {
     const { title, description } = req.body;
+    const imageName = req.file.filename;
 
     try {
         const newPost = new Post({
+            image : imageName,
             title,
             description,
-            user: req.user.id,
+            user: req.userId,
         });
 
         const post = await newPost.save();
         res.json(post);
     } catch (err) {
-        console.error(err.message);
+        console.error("my error" + err.message);
         res.status(500).send('Server error');
     }
 });

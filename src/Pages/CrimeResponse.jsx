@@ -1,10 +1,66 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from "../Pages/Layout";
 import location from "../assets/location.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+
+
 
 const CrimeResponse = () => {
+    const [title, setTitle] = useState('');
+    const [desc, setDesc] = useState('');
+    const [image , setImage] = useState('');
+
+    const addPostHandle = async (e) => {
+        const formdata = new FormData();
+        formdata.append('title' , title);
+        formdata.append('description' , desc);
+        formdata.append('image' , image);
+
+        try {
+          e.preventDefault();
+          const res = await axios.post(`http://localhost:5000/api/posts/add_post` , formdata , {
+            headers : {
+                "Content-Type" : "multipart/form-data",
+                'auth-token': localStorage.getItem("token")
+            }
+          });
+          if(res.error){
+            toast.error(res.error, {
+              position: "top-right",
+              autoClose: 1000,  // Duration in milliseconds
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }else{
+            setTitle('');
+            setDesc('');
+            setImage(null);
+            // localStorage.setItem("token" , res.token)
+            toast.success("Report Added", {
+              position: "top-right",
+              autoClose: 1000,  // Duration in milliseconds
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
+        } catch (error) {
+          console.log("Error" , error);
+        }
+      }
+
+
+
     return (
         <Layout>
+            <ToastContainer />
             <div className="crime-response">
                 <div className="hero bg-[#03302D] h-[30vh] text-white flex justify-center items-center">
                     <h1 className="text-3xl md:text-5xl font-semibold">Crime Responses</h1>
@@ -94,28 +150,34 @@ const CrimeResponse = () => {
                     </div>
 
                     <div className="crime-response-right bg-[#EBF5F4] w-[100%] md:w-[30%] rounded-lg px-4 py-4 ">
-                        <h1 className='font-semibold text-3xl my-2'>Send Response</h1>
+                        <h1 className='font-semibold text-3xl my-2'>Add Complain</h1>
+                        {
+                            localStorage.getItem("token") ? "" : <p className='text-red-500 text-center'>
+                                Please sign in to register your complain
+                            </p>
+                        }
                         <div className="inputs">
 
                             <div className="inp my-4">
-                                <input className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Full name'/>
+                                <input value={title} onChange={(e) => setTitle(e.target.value)} className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Complaint Title'/>
                             </div>
 
                             <div className="inp my-4">
-                                <input className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Email Address'/>
+                                <p className='text-sm mt-3 pl-2'>Report image</p>
+                                <input name="image" onChange={(e) => setImage(e.target.files[0])} type="file" className='w-[100%] py-1 px-2 rounded-lg outline-none' />
                             </div>
 
                             <div className="inp my-4">
-                                <input className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Complaint Title'/>
+                                <textarea value={desc} onChange={(e) => setDesc(e.target.value)} rows={8} className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Complaint Description'/>
                             </div>
 
-                            <div className="inp my-4">
-                                <textarea rows={8} className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Your Message'/>
-                            </div>
 
                             <div className="inp my-4">
                                 {
-                                    localStorage.getItem("token") ? <button className='bg-[#309689] text-white px-6 py-1 rounded-lg font-semibold'>Send Message</button> : <button className='bg-[#309689] text-white px-6 py-1 rounded-lg font-semibold'>Send Message Disabled</button>
+                                    localStorage.getItem("token") ? <button onClick={addPostHandle} className='bg-[#309689] text-white px-6 py-1 rounded-lg font-semibold'>Add Report</button> : <button class="bg-gray-300 px-4 py-2 rounded-md cursor-not-allowed opacity-50" disabled>
+                                    Add Report
+                                  </button>
+                                
                                 }
                             </div>
 

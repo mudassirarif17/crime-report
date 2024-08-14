@@ -1,13 +1,20 @@
-import React from 'react'
+import React , {useContext, useEffect} from 'react'
 import logo from "../assets/footerlogo.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import myContext from '../context/data/myContext';
+
 
 
 
 
 const Navbar = () => {
+  const context = useContext(myContext);
+  const {user , setUser , userData} = context;
+
+  const path = "/src/images/";
+
 
   const navigate = useNavigate();
 
@@ -15,6 +22,10 @@ const Navbar = () => {
     localStorage.removeItem('token');
     navigate("/");
   }
+
+  useEffect(()=>{
+      userData();
+  } , [])
 
 
   const toggleNavbar = () =>{
@@ -43,7 +54,13 @@ const Navbar = () => {
 
         <div className="btns hidden md:block">
           {localStorage.getItem("token") ? 
+          <div className='flex items-center'>
+          <div>
+            {/* <img className='w-[50px] h-[50px] rounded-full mb-6' src={path+user.image} alt="some error"/> */}
+            {/* <h1 className='text-white'>{user.name}</h1> */}
+            </div>
           <button onClick={logout} className='text-white font-semibold text-lg px-4 py-1 rounded-lg bg-[#309689]'>Logout</button>
+          </div>
           : <>
             <Link to='/sign-in' className='text-white font-semibold mx-4 text-lg'>Login</Link>
             <Link to='/sign-up' className='text-white font-semibold text-lg px-4 py-1 rounded-lg bg-[#309689]'>Register</Link>

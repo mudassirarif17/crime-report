@@ -1,4 +1,5 @@
 import React from 'react'
+import MyState from './context/data/MyState';
 import SignUp from './Pages/SignUp'
 import Login from './Pages/Login'
 import CrimeReports from './Pages/CrimeReports'
@@ -10,6 +11,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const App = () => {
   return (
+    <MyState>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -22,6 +24,8 @@ const App = () => {
         <Route path='/about' element={<About/>}/>
       </Routes>
     </BrowserRouter>
+    </MyState>
+
   )
 }
 
