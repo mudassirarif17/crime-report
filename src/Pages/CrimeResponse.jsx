@@ -1,19 +1,25 @@
-import React, { useEffect, useState , useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Layout from "../Pages/Layout";
 import location from "../assets/location.png";
 import myContext from '../context/data/myContext';
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CrimeResponse = () => {
     const context = useContext(myContext);
-    const {title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts} = context;
+    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts } = context;
 
     useEffect(() => {
         getAllPosts();
     }, [searchNotes]);
 
-
+    const showModal = () => {
+        if(document.getElementById('modal').classList.contains('hidden')){
+            document.getElementById('modal').classList.remove('hidden')
+          }else{
+            document.getElementById('modal').classList.add('hidden')
+          }
+    }
 
     return (
         <Layout>
@@ -85,16 +91,16 @@ const CrimeResponse = () => {
                 <div className="crime-response-btm flex flex-col md:flex-row w-[90vw] mx-auto my-10 ">
 
                     <div className="crime-response-left w-[100%] md:w-[65%] mb-10">
-                    {
-                    searchNotes.map((data, index) => (
-                        <tr key={index} className="btm mb-3 bg-[#309689] w-[100%] md:w-[96%] h-[6vh] md:h-[9vh] rounded-xl flex items-center cursor-pointer">
-                            <td className='w-[10%] text-center text-lg'>{index + 1}</td>
-                            <td className='w-[50%] text-lg'>{data.title}</td>
-                            <td className='w-[50%] text-lg'>{data.description.slice(0,20) } ...</td>
-                            <td className='w-[40%] text-lg'>View</td>
-                        </tr>
-                    ))    
-                    }
+                        {
+                            searchNotes.map((data, index) => (
+                                <tr key={ index } className="btm mb-3 bg-[#309689] w-[100%] md:w-[96%] h-[6vh] md:h-[9vh] rounded-xl flex items-center cursor-pointer">
+                                    <td className='w-[10%] text-center text-lg'>{ index + 1 }</td>
+                                    <td className='w-[50%] text-lg'>{ data.title }</td>
+                                    <td className='w-[50%] text-lg'>{ data.description.slice(0, 20) } ...</td>
+                                    <td onClick={showModal} className='w-[40%] text-lg'>View</td>
+                                </tr>
+                            ))
+                        }
                     </div>
 
                     <div className="crime-response-right bg-[#EBF5F4] w-[100%] md:w-[30%] rounded-lg px-4 py-4 ">
@@ -128,6 +134,12 @@ const CrimeResponse = () => {
                 </div>
 
             </div>
+
+            {/* Modal code */ }
+            <div id="modal" className="mx-auto hidden modal rounded-xl bg-white shadow-xl h-[70vh] w-[50vw] fixed top-[24%] left-[25.3vw]">
+
+            </div>
+
         </Layout>
     )
 }
