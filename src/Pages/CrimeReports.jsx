@@ -17,7 +17,7 @@ ChartJS.register(
 );
 const CrimeReports = () => {
   const pieData = {
-    labels: ['Users', 'Orders', 'Products', 'Feedback'],
+    labels: ['Crime Reports', 'Comments', 'Likes', 'DisLikes'],
     datasets: [
       {
         label: 'All Users',
@@ -41,7 +41,7 @@ const CrimeReports = () => {
       },
       title: {
         display: true,
-        text: 'All Users',
+        text: 'All Crimes',
       },
     },
   };
