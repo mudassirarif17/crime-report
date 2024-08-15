@@ -19,7 +19,7 @@ const upload = multer({storage : storage});
 // Get all posts
 router.get("/getallposts" , async (req , res)=>{
     try {
-        const notes = await Post.find();
+        const notes = await Post.find().populate('user');
         res.json(notes) 
     } catch (error) {
         console.log(error);

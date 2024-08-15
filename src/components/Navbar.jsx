@@ -48,8 +48,8 @@ const Navbar = () => {
         <ul className="menu md:flex hidden text-white space-x-6 text-lg cursor-pointer">
           <Link to="/">Home</Link>
           <Link to='/about'>About Us</Link>
-          <Link to='/crime-report'>Crime Reports</Link>
-          <Link to='/crime-response'>Crime Response's</Link>
+          <Link to='/crime-report'>Crime Response's</Link>
+          <Link to='/crime-response'>Crime Reports</Link>
           <Link to='/contact'>Contact Us</Link>
         </ul>
 
@@ -81,8 +81,8 @@ const Navbar = () => {
         <ul className='space-y-4 mx-6 text-xl'>
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/about'>About Us</Link></li>
-          <li><Link to='/crime-report'>Crime Reports</Link></li>
-          <li><Link to='/crime-response'>Crime Response's</Link></li>
+          <li><Link to='/crime-report'>Crime Response's</Link></li>
+          <li><Link to='/crime-response'>Crime Reports</Link></li>
           <li><Link to='/contact'>Contact Us</Link> </li>
         </ul>
 

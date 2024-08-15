@@ -119,10 +119,10 @@ const CrimeResponse = () => {
                                     {/* <img className='w-[50px] h-[50px]' src={`src/images/${user.image}`} alt="" /> */}
                                 </div>
                                 <div className="anonymous px-5 flex items-center gap-2 text-md font-semibold">
-                                    <div className='bg-gray-300 w-[50px] h-[50px] rounded-full'></div>
+                                    <img className='bg-gray-300 w-[50px] h-[50px] rounded-full' src={`src/images/${data.user.image}`} alt="" />
                                     <div>
-                                        <p>Anonymous</p>
-                                        <p className='text-sm font-light'>27-jun-24</p>
+                                        <p>{data.user.username}</p>
+                                        <p className='text-sm font-light'>{data.date}</p>
                                     </div>
                                 </div>
                                 <div className='px-5 pt-4 response flex justify-between items-center'>
