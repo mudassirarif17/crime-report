@@ -17,6 +17,8 @@ function MyState(props) {
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false); // Added loading state
     const [comment , setComment] = useState([]);
+    const [cId , setCId] = useState('');
+    const [addCommentText , setAddCommentText] = useState('');
 
     const addPostHandle = async (e) => {
         const formData = new FormData();
@@ -126,6 +128,7 @@ function MyState(props) {
         if (document.getElementById('modal').classList.contains('hidden')) {
             document.getElementById('modal').classList.remove('hidden');
             getAllComments(id);
+            setCId(id)
         } else {
             document.getElementById('modal').classList.add('hidden')
         }
@@ -147,8 +150,47 @@ function MyState(props) {
         }
     }
 
+    const AddComment = async (id) => {
+        const res = await fetch(`http://localhost:5000/api/posts/${id}/comment`, {
+            'method': "POST",
+            headers: {
+                'Content-Type': "application/json",
+                'auth-token': localStorage.getItem("token")
+            },
+            body: JSON.stringify({ addCommentText })
+        })
+        const comm = await res.json();
+        getAllPosts();
+        getAllComments();
+        if (comm.error) {
+            toast.error(res.error, {
+                position: "top-right",
+                autoClose: 1000,  
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        } else {
+            setAddCommentText("");
+            toast.success("comment Added", {
+                position: "top-right",
+                autoClose: 1000,  
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }
+
+    
+        
+
     return (
-        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments}}>
+        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , addCommentText , setAddCommentText}}>
             {props.children}
         </myContext.Provider>
     )

@@ -20,7 +20,7 @@ const CrimeResponse = () => {
 
 
     const context = useContext(myContext);
-    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts , likeHandler , disLikeHandler , user , setUser , userData , showCommentModal , comment , getAllComments} = context;
+    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts , likeHandler , disLikeHandler , user , setUser , userData , showCommentModal , comment , getAllComments , AddComment , cId , addComment , setAddComment } = context;
 
     useEffect(() => {
         getAllPosts();
@@ -197,7 +197,13 @@ const CrimeResponse = () => {
                     <ul>
                         {
                             comment.map((data , index)=>(
-                                <li>{data.text}</li>
+                                <li className='flex gap-2 items-center my-3'>
+                                    <div className="left bg-gray-200 w-[50px] h-[50px] rounded-full"></div>
+                                    <div className="right ">
+                                        <h1 className='text-md font-bold'>Name</h1>
+                                        <p className='text-sm font-light'>{data.text}</p>
+                                    </div>
+                                </li>
                             ))
                         }
                         
@@ -206,10 +212,10 @@ const CrimeResponse = () => {
 
                 <div className="btm px-5 py-5 flex items-center">
                     <div className='w-[100%]'>
-                        <input className='px-3 py-3 bg-[#fcf7f7] rounded-lg w-[95%] outline-none' type="text" placeholder='Comment'/>
+                        <input value={addComment} onChange={(e)=>setAddComment(e.target.value)} className='px-3 py-3 bg-[#fcf7f7] rounded-lg w-[95%] outline-none' type="text" placeholder='Comment'/>
                     </div>
                     <div>
-                        <button className='bg-[#309689] text-white text-xl px-6 py-2 font-semibold rounded-lg'>Post</button>
+                        <button onClick={()=>AddComment(cId)} className='bg-[#309689] text-white text-xl px-6 py-2 font-semibold rounded-lg'>Post</button>
                     </div>
                 </div>
             </div>
