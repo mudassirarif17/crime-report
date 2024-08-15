@@ -7,6 +7,7 @@ import authMiddleware from "../middleware/authMiddleware.js";
 // Add a comment
 router.post('/:id/comment', authMiddleware, async (req, res) => {
     const { text } = req.body;
+    const {id} = req.params;
 
     try {
         const post = await Post.findById(req.params.id);
@@ -14,7 +15,7 @@ router.post('/:id/comment', authMiddleware, async (req, res) => {
         const newComment = new Comment({
             text,
             user: req.userId,
-            post: req.params.id,
+            post: id,
         });
         post.comments.push(req.userId);
         await post.save();

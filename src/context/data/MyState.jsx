@@ -18,7 +18,7 @@ function MyState(props) {
     const [loading, setLoading] = useState(false); // Added loading state
     const [comment , setComment] = useState([]);
     const [cId , setCId] = useState('');
-    const [addCommentText , setAddCommentText] = useState('');
+    const [text , setText] = useState('');
 
     const addPostHandle = async (e) => {
         const formData = new FormData();
@@ -157,40 +157,19 @@ function MyState(props) {
                 'Content-Type': "application/json",
                 'auth-token': localStorage.getItem("token")
             },
-            body: JSON.stringify({ addCommentText })
+            body: JSON.stringify({ text })
         })
         const comm = await res.json();
-        getAllPosts();
-        getAllComments();
-        if (comm.error) {
-            toast.error(res.error, {
-                position: "top-right",
-                autoClose: 1000,  
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } else {
-            setAddCommentText("");
-            toast.success("comment Added", {
-                position: "top-right",
-                autoClose: 1000,  
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        }
+        setText('');
+        getAllComments(id);
+        
     }
 
     
         
 
     return (
-        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , addCommentText , setAddCommentText}}>
+        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText}}>
             {props.children}
         </myContext.Provider>
     )

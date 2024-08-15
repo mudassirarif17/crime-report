@@ -20,7 +20,7 @@ const CrimeResponse = () => {
 
 
     const context = useContext(myContext);
-    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts , likeHandler , disLikeHandler , user , setUser , userData , showCommentModal , comment , getAllComments , AddComment , cId , addComment , setAddComment } = context;
+    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts , likeHandler , disLikeHandler , user , setUser , userData , showCommentModal , comment , getAllComments , AddComment , cId , text , setText } = context;
 
     useEffect(() => {
         getAllPosts();
@@ -182,9 +182,9 @@ const CrimeResponse = () => {
             </div>
 
             {/* Modal code */ }
-            <div id="modal" className="mx-auto hidden py-2 modal rounded-xl bg-white shadow-xl w-[100vw] md:w-[50vw] fixed top-[24%] md:left-[25.3vw]">
+            <div id="modal" className="mx-auto hidden h-[80vh] py-2 modal rounded-xl bg-white shadow-xl w-[100vw] md:w-[50vw] fixed top-[15%] md:left-[25.3vw] ">
 
-                <div className='top px-5 py-5 flex justify-between'>
+                <div className='top px-5 py-5 flex justify-between h-[12vh]'>
                     <div className="left">
                         <h1 className='font-bold text-xl'>Add Comment</h1>
                     </div>
@@ -193,7 +193,7 @@ const CrimeResponse = () => {
                     </div>
                 </div>
 
-                <div className="mid px-5">
+                <div className="mid h-[54vh] px-5 overflow-auto">
                     <ul>
                         {
                             comment.map((data , index)=>(
@@ -210,9 +210,9 @@ const CrimeResponse = () => {
                     </ul>
                 </div>
 
-                <div className="btm px-5 py-5 flex items-center">
+                <div className="btm px-5 py-5 flex items-center h-[14vh]">
                     <div className='w-[100%]'>
-                        <input value={addComment} onChange={(e)=>setAddComment(e.target.value)} className='px-3 py-3 bg-[#fcf7f7] rounded-lg w-[95%] outline-none' type="text" placeholder='Comment'/>
+                        <input value={text} onChange={(e)=>setText(e.target.value)} className='px-3 py-3 bg-[#fcf7f7] rounded-lg w-[95%] outline-none' type="text" placeholder='Comment'/>
                     </div>
                     <div>
                         <button onClick={()=>AddComment(cId)} className='bg-[#309689] text-white text-xl px-6 py-2 font-semibold rounded-lg'>Post</button>
