@@ -2,6 +2,8 @@ import express from "express";
 const router = express.Router();
 import Comment from "../models/Comment.js";
 import Post from "../models/Post.js";
+import mongoose from 'mongoose';
+import User from "../models/User.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 
 // Add a comment
@@ -31,7 +33,7 @@ router.post('/:id/comment', authMiddleware, async (req, res) => {
 router.get("/getallcomments/:id" , async (req , res)=>{
     const {id} = req.params;
     try {
-        const comment = await Comment.find({post : id});
+        const comment = await Comment.find({post : id}).populate('user');
         // console.log(comment)
         res.json(comment) 
     } catch (error) {
@@ -41,8 +43,4 @@ router.get("/getallcomments/:id" , async (req , res)=>{
 })
 
 
-
-
-
-// module.exports = router;
 export default router;

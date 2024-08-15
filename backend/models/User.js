@@ -40,7 +40,9 @@ UserSchema.methods.matchPassword = async function (password) {
 };
 
 // module.exports = mongoose.model('User', UserSchema);
-const User = model('user' , UserSchema); 
-User.createIndexes();
+const User = model('User' , UserSchema); 
+// User.createIndexes();
 
 export default User;
+
+
