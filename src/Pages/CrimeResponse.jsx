@@ -20,20 +20,14 @@ const CrimeResponse = () => {
 
 
     const context = useContext(myContext);
-    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts , likeHandler , disLikeHandler , user , setUser , userData } = context;
+    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts , likeHandler , disLikeHandler , user , setUser , userData , showCommentModal , comment , getAllComments} = context;
 
     useEffect(() => {
         getAllPosts();
         userData();
     }, []);
 
-    const showCommentModal = () => {
-        if (document.getElementById('modal').classList.contains('hidden')) {
-            document.getElementById('modal').classList.remove('hidden')
-        } else {
-            document.getElementById('modal').classList.add('hidden')
-        }
-    }
+    
 
     return (
         <Layout>
@@ -138,8 +132,8 @@ const CrimeResponse = () => {
                                             {data.likes.includes(user._id) ? <AiFillLike className='text-xl' /> : data.dislikes.includes(user._id) ? <AiOutlineLike className='text-xl opacity-50' disabled/> : <AiOutlineLike onClick={() =>likeHandler(data._id)} className='text-xl' />}
                                         </div>
                                     </div>
-                                    <div onClick={showCommentModal} className='flex gap-1 items-center'>
-                                        <div className='num'>0</div>
+                                    <div onClick={()=>showCommentModal(data._id)} className='flex gap-1 items-center'>
+                                        <div className='num'>{data.comments.length}</div>
                                         <div className="icon"><FaRegComment/></div>
                                     </div>
                                     <div className='flex gap-1 items-center'>
@@ -201,10 +195,12 @@ const CrimeResponse = () => {
 
                 <div className="mid px-5">
                     <ul>
-                        <li>comment 1</li>
-                        <li>comment 1</li>
-                        <li>comment 1</li>
-                        <li>comment 1</li>
+                        {
+                            comment.map((data , index)=>(
+                                <li>{data.text}</li>
+                            ))
+                        }
+                        
                     </ul>
                 </div>
 

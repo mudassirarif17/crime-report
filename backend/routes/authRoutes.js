@@ -114,7 +114,7 @@ router.post("/login", async (req, res) => {
 
         // Find the user by email
         const user = await User.findOne({ email });
-        console.log(user);
+        // console.log(user);
 
         // If user is not found, send a 404 response
         if (!user) {
@@ -123,7 +123,7 @@ router.post("/login", async (req, res) => {
 
         // Compare the provided password with the stored password
         const dotMatch = await bcrypt.compare(password, user.password);
-        console.log(dotMatch);
+        // console.log(dotMatch);
 
         // If the password matches, generate a JWT token and send it
         if (dotMatch) {
@@ -148,7 +148,7 @@ router.post("/login", async (req, res) => {
 router.get('/getuser' , authMiddleware ,async (req , res)=>{
     try {
         const userId = req.userId;
-        console.log(userId);
+        // console.log(userId);
         const user = await User.findById(userId).select("-password");
         res.send(user);
     } catch (error) {

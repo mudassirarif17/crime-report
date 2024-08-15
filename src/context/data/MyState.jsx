@@ -16,7 +16,7 @@ function MyState(props) {
     const [searchNotes, setSearchNotes] = useState([]);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false); // Added loading state
-    // const [islike , setIslike] = useState(false);
+    const [comment , setComment] = useState([]);
 
     const addPostHandle = async (e) => {
         const formData = new FormData();
@@ -122,8 +122,33 @@ function MyState(props) {
         getAllPosts();
       }
 
+      const showCommentModal = (id) => {
+        if (document.getElementById('modal').classList.contains('hidden')) {
+            document.getElementById('modal').classList.remove('hidden');
+            getAllComments(id);
+        } else {
+            document.getElementById('modal').classList.add('hidden')
+        }
+    }
+
+    const getAllComments = async (id) => {
+        try {
+            const res = await fetch(`http://localhost:5000/api/posts/getallcomments/${id}`, {
+                method: `GET`,
+                headers: {
+                    'Content-Type': "application/json",
+                }
+            });
+            const commentData = await res.json();
+            console.log(commentData); // Check the response here
+            setComment(commentData);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
-        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler}}>
+        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments}}>
             {props.children}
         </myContext.Provider>
     )

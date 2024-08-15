@@ -33,7 +33,7 @@ const fetchUser = (req,res,next)=>{
     try {
         const { userId } = jwt.verify(token , process.env.JWT_SECRET);
         req.userId = userId;
-        console.log("fetchuser :" , userId);
+        // console.log("fetchuser :" , userId);
 
         next();
     } catch (error) {
