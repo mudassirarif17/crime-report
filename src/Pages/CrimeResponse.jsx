@@ -27,7 +27,7 @@ const CrimeResponse = () => {
     useEffect(() => {
         getAllPosts();
         userData();
-    }, []);
+    }, [allNotes]);
 
 
 
