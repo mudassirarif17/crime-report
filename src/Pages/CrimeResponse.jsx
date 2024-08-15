@@ -198,9 +198,9 @@ const CrimeResponse = () => {
                         {
                             comment.map((data , index)=>(
                                 <li className='flex gap-2 items-center my-3'>
-                                    <div className="left bg-gray-200 w-[50px] h-[50px] rounded-full"></div>
+                                    <img src={`src/images/${data.user.image}`} className="left bg-gray-200 w-[50px] h-[50px] rounded-full"/>
                                     <div className="right ">
-                                        <h1 className='text-md font-bold'>Name</h1>
+                                        <h1 className='text-md font-bold'>{data.user.username}</h1>
                                         <p className='text-sm font-light'>{data.text}</p>
                                     </div>
                                 </li>
