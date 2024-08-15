@@ -10,6 +10,8 @@ import { FaRegComment } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
+import { formatDistanceToNow } from 'date-fns';
+
 
 
 
@@ -20,14 +22,14 @@ const CrimeResponse = () => {
 
 
     const context = useContext(myContext);
-    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts , likeHandler , disLikeHandler , user , setUser , userData , showCommentModal , comment , getAllComments , AddComment , cId , text , setText } = context;
+    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts, likeHandler, disLikeHandler, user, setUser, userData, showCommentModal, comment, getAllComments, AddComment, cId, text, setText } = context;
 
     useEffect(() => {
         getAllPosts();
         userData();
     }, []);
 
-    
+
 
     return (
         <Layout>
@@ -99,53 +101,55 @@ const CrimeResponse = () => {
                 <div className="crime-response-btm flex flex-col md:flex-row w-[90vw] mx-auto my-10 ">
                     <div className="crime-response-left w-[100%] md:w-[65%] mb-10">
                         <div class="grid cols-1 md:grid-cols-2 gap-4 py-10">
-                        {
-                            searchNotes.map((data, index) => (
-                                // <tr key={ index } className="btm mb-3 bg-[#309689] w-[100%] md:w-[96%] h-[6vh] md:h-[9vh] rounded-xl flex items-center cursor-pointer">
-                                //     <td className='w-[10%] text-center text-lg'>{ index + 1 }</td>
-                                //     <td className='w-[50%] text-lg'>{ data.title }</td>
-                                //     <td className='w-[50%] text-lg'>{ data.description.slice(0, 20) } ...</td>
-                                //     <td onClick={showModal} className='w-[40%] text-lg'>View</td>
-                                // </tr>
-                                <div className="card w-[97%] cursor-pointer my-0 md:my-4 rounded-lg shadow-md bg-white py-7">
-                                <div className="img flex justify-center">
-                                    <img className='px-5 h-[200px]' src={`src/images/${data.image}`} alt="loading" />
-                                </div>
-                                <div className="desc px-5 py-5">
-                                    <h1 className='text-xl font-bold'>{ data.title }</h1>
-                                    <p className='font-light text-sm'>{ data.description} ...</p>
-                                </div>
-                                <div className="icons px-5 flex justify-end">
-                                    {/* <img className='w-[50px] h-[50px]' src={`src/images/${user.image}`} alt="" /> */}
-                                </div>
-                                <div className="anonymous px-5 flex items-center gap-2 text-md font-semibold">
-                                    <img className='bg-gray-300 w-[50px] h-[50px] rounded-full' src={`src/images/${data.user.image}`} alt="" />
-                                    <div>
-                                        <p>{data.user.username}</p>
-                                        <p className='text-sm font-light'>{data.date}</p>
-                                    </div>
-                                </div>
-                                <div className='px-5 pt-4 response flex justify-between items-center'>
-                                    <div className='flex gap-1 items-center'>
-                                        <div className='num'>{data.likes.length}</div>
-                                        <div className="icon flex">
-                                            {data.likes.includes(user._id) ? <AiFillLike className='text-xl' /> : data.dislikes.includes(user._id) ? <AiOutlineLike className='text-xl opacity-50' disabled/> : <AiOutlineLike onClick={() =>likeHandler(data._id)} className='text-xl' />}
+                            {
+                                searchNotes.map((data, index) => (
+                                    // <tr key={ index } className="btm mb-3 bg-[#309689] w-[100%] md:w-[96%] h-[6vh] md:h-[9vh] rounded-xl flex items-center cursor-pointer">
+                                    //     <td className='w-[10%] text-center text-lg'>{ index + 1 }</td>
+                                    //     <td className='w-[50%] text-lg'>{ data.title }</td>
+                                    //     <td className='w-[50%] text-lg'>{ data.description.slice(0, 20) } ...</td>
+                                    //     <td onClick={showModal} className='w-[40%] text-lg'>View</td>
+                                    // </tr>
+                                    <div className="card w-[97%] cursor-pointer my-0 md:my-4 rounded-lg shadow-md bg-white py-7">
+                                        <div className="img flex justify-center">
+                                            <img className='px-5 h-[200px]' src={ `src/images/${data.image}` } alt="loading" />
+                                        </div>
+                                        <div className="desc px-5 py-5">
+                                            <h1 className='text-xl font-bold'>{ data.title }</h1>
+                                            <p className='font-light text-sm'>{ data.description } ...</p>
+                                        </div>
+                                        <div className="icons px-5 flex justify-end">
+                                            {/* <img className='w-[50px] h-[50px]' src={`src/images/${user.image}`} alt="" /> */ }
+                                        </div>
+                                        <div className="anonymous px-5 flex items-center gap-2 text-md font-semibold">
+                                            <img className='bg-gray-300 w-[50px] h-[50px] rounded-full' src={ `src/images/${data.user.image}` } alt="" />
+                                            <div>
+                                                <p>{ data.user.username }</p>
+                                                <p className="text-sm font-light">
+                                                    { formatDistanceToNow(new Date(data.date), { addSuffix: true }) }
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className='px-5 pt-4 response flex justify-between items-center'>
+                                            <div className='flex gap-1 items-center'>
+                                                <div className='num'>{ data.likes.length }</div>
+                                                <div className="icon flex">
+                                                    { data.likes.includes(user._id) ? <AiFillLike className='text-xl' /> : data.dislikes.includes(user._id) ? <AiOutlineLike className='text-xl opacity-50' disabled /> : <AiOutlineLike onClick={ () => likeHandler(data._id) } className='text-xl' /> }
+                                                </div>
+                                            </div>
+                                            <div onClick={ () => showCommentModal(data._id) } className='flex gap-1 items-center'>
+                                                <div className='num'>{ data.comments.length }</div>
+                                                <div className="icon"><FaRegComment /></div>
+                                            </div>
+                                            <div className='flex gap-1 items-center'>
+                                                <div className='num'>{ data.dislikes.length }</div>
+                                                <div className="icon flex">
+                                                    { data.dislikes.includes(user._id) ? <AiFillDislike className='text-xl' /> : data.likes.includes(user._id) ? <AiOutlineDislike className='text-xl opacity-50' disabled /> : <AiOutlineDislike onClick={ () => disLikeHandler(data._id) } className='text-xl' /> }
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div onClick={()=>showCommentModal(data._id)} className='flex gap-1 items-center'>
-                                        <div className='num'>{data.comments.length}</div>
-                                        <div className="icon"><FaRegComment/></div>
-                                    </div>
-                                    <div className='flex gap-1 items-center'>
-                                        <div className='num'>{data.dislikes.length}</div>
-                                        <div className="icon flex">
-                                                {data.dislikes.includes(user._id) ? <AiFillDislike className='text-xl' /> : data.likes.includes(user._id) ? <AiOutlineDislike className='text-xl opacity-50' disabled/> : <AiOutlineDislike onClick={() =>disLikeHandler(data._id)} className='text-xl' />}
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            ))
-                        }
+                                ))
+                            }
                         </div>
                     </div>
 
@@ -188,34 +192,34 @@ const CrimeResponse = () => {
                     <div className="left">
                         <h1 className='font-bold text-xl'>Add Comment</h1>
                     </div>
-                    <div onClick={showCommentModal} className="right cursor-pointer">
-                        <IoIosClose className='text-4xl'/>
+                    <div onClick={ showCommentModal } className="right cursor-pointer">
+                        <IoIosClose className='text-4xl' />
                     </div>
                 </div>
 
                 <div className="mid h-[54vh] px-5 overflow-auto">
                     <ul>
                         {
-                            comment.map((data , index)=>(
+                            comment.map((data, index) => (
                                 <li className='flex gap-2 items-center my-3'>
-                                    <img src={`src/images/${data.user.image}`} className="left bg-gray-200 w-[50px] h-[50px] rounded-full"/>
+                                    <img src={ `src/images/${data.user.image}` } className="left bg-gray-200 w-[50px] h-[50px] rounded-full" />
                                     <div className="right ">
-                                        <h1 className='text-md font-bold'>{data.user.username}</h1>
-                                        <p className='text-sm font-light'>{data.text}</p>
+                                        <h1 className='text-md font-bold'>{ data.user.username }</h1>
+                                        <p className='text-sm font-light'>{ data.text }</p>
                                     </div>
                                 </li>
                             ))
                         }
-                        
+
                     </ul>
                 </div>
 
                 <div className="btm px-5 py-5 flex items-center h-[14vh]">
                     <div className='w-[100%]'>
-                        <input value={text} onChange={(e)=>setText(e.target.value)} className='px-3 py-3 bg-[#fcf7f7] rounded-lg w-[95%] outline-none' type="text" placeholder='Comment'/>
+                        <input value={ text } onChange={ (e) => setText(e.target.value) } className='px-3 py-3 bg-[#fcf7f7] rounded-lg w-[95%] outline-none' type="text" placeholder='Comment' />
                     </div>
                     <div>
-                        <button onClick={()=>AddComment(cId)} className='bg-[#309689] text-white text-xl px-6 py-2 font-semibold rounded-lg'>Post</button>
+                        <button onClick={ () => AddComment(cId) } className='bg-[#309689] text-white text-xl px-6 py-2 font-semibold rounded-lg'>Post</button>
                     </div>
                 </div>
             </div>
