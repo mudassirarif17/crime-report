@@ -9,9 +9,14 @@ function MyState(props) {
     // const name = "Mudassir";
     
     const [user, setUser] = useState([]);
+
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
     const [image, setImage] = useState('');
+    const [category, setCategory] = useState('');
+    const [region, setRegion] = useState('');
+
+
     const [allNotes, setAllNotes] = useState([]);
     const [searchNotes, setSearchNotes] = useState([]);
     const [search, setSearch] = useState("");
@@ -25,6 +30,8 @@ function MyState(props) {
         formData.append('title', title);
         formData.append('description', desc);
         formData.append('image', image);
+        formData.append('category', category);
+        formData.append('region', region);
 
         try {
             e.preventDefault();
@@ -47,6 +54,8 @@ function MyState(props) {
             } else {
                 setTitle('');
                 setDesc('');
+                setCategory('');
+                setRegion('');
                 setImage(null);
                 toast.success("Report Added", {
                     position: "top-right",
@@ -169,7 +178,7 @@ function MyState(props) {
         
 
     return (
-        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText}}>
+        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText , category , setCategory , region , setRegion}}>
             {props.children}
         </myContext.Provider>
     )

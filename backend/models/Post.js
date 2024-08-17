@@ -18,6 +18,14 @@ const PostSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    region : {
+        type: String,
+        required : true,
+    },
+    category : {
+        type : String,
+        required : true
+    },
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     comments : [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],

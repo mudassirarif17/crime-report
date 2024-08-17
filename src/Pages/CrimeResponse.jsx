@@ -22,7 +22,7 @@ const CrimeResponse = () => {
 
 
     const context = useContext(myContext);
-    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts, likeHandler, disLikeHandler, user, setUser, userData, showCommentModal, comment, getAllComments, AddComment, cId, text, setText } = context;
+    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts, likeHandler, disLikeHandler, user, setUser, userData, showCommentModal, comment, getAllComments, AddComment, cId, text, setText , category , setCategory , region , setRegion } = context;
 
     useEffect(() => {
         getAllPosts();
@@ -167,9 +167,35 @@ const CrimeResponse = () => {
                             </div>
 
                             <div className="inp my-4">
+                                <select className='w-[100%] px-4 py-1 rounded-lg outline-none' id="region" name="region">
+                                    <option>-- Select Region --</option>
+                                    <option value={region} setRegion={()=>setRegion(e.target.value)}>East</option>
+                                    <option value={region} setRegion={()=>setRegion(e.target.value)}>North</option>
+                                    <option value={region} setRegion={()=>setRegion(e.target.value)}>West</option>
+                                    <option value={region} setRegion={()=>setRegion(e.target.value)}>South</option>
+                                    <option value={region} setRegion={()=>setRegion(e.target.value)}>Central</option>
+                                </select>
+                            </div>
+
+                            <div className="inp my-4">
+                                <select className='w-[100%] px-4 py-1 rounded-lg outline-none' id="region" name="region">
+                                    <option>-- Select Category --</option>
+                                    <option value={category} onChange={()=>setCategory(e.target.value)}>MURDER</option>
+                                    <option value={category} onChange={()=>setCategory(e.target.value)}>TARGETED KILLING</option>
+                                    <option value={category} onChange={()=>setCategory(e.target.value)}>MURDER DURING ROBBERY</option>
+                                    <option value={category} onChange={()=>setCategory(e.target.value)}>BOMB BLAST</option>
+                                    <option value={category} onChange={()=>setCategory(e.target.value)}>HIGH WAY ROBBERY</option>
+                                    <option value={category} onChange={()=>setCategory(e.target.value)}>BANK ROBBERY</option>
+                                    <option value={category} onChange={()=>setCategory(e.target.value)}>CAR SNATCHING</option>
+                                    <option value={category} onChange={()=>setCategory(e.target.value)}>GANG RAPE</option>
+                                </select>
+                            </div>
+
+                            <div className="inp my-4">
                                 <p className='text-sm mt-3 pl-2'>Report image</p>
                                 <input name="image" onChange={(e) => setImage(e.target.files[0])} type="file" className='w-[100%] py-1 px-2 rounded-lg outline-none' />
                             </div>
+
 
                             <div className="inp my-4">
                                 <textarea value={desc} onChange={(e) => setDesc(e.target.value)} rows={8} className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Complaint Description' />
@@ -177,9 +203,9 @@ const CrimeResponse = () => {
 
                             <div className="btn text-center my-4">
                                 {
-                                    localStorage.getItem("token") ? 
-                                    <button onClick={addPostHandle} className='bg-[#03302D] disabled:bg-[#666] py-2 w-[100%] text-white rounded-lg'>Add Report</button>
-                                    : <button  className='bg-[#03302D] disabled:bg-[#666] py-2 w-[100%] text-white rounded-lg cursor-not-allowed' disabled>Add Report</button>
+                                    localStorage.getItem("token") ?
+                                        <button onClick={addPostHandle} className='bg-[#03302D] disabled:bg-[#666] py-2 w-[100%] text-white rounded-lg'>Add Report</button>
+                                        : <button className='bg-[#03302D] disabled:bg-[#666] py-2 w-[100%] text-white rounded-lg cursor-not-allowed' disabled>Add Report</button>
                                 }
                             </div>
 
