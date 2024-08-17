@@ -8,7 +8,9 @@ import Contact from './Pages/Contact'
 import CrimeResponse from './Pages/CrimeResponse'
 import Home from './Pages/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Crime23 from './Pages/Crime23';
+import South from './Pages/South';
+import East from './Pages/East';
+import West from './Pages/West';
 
 const App = () => {
   return (
@@ -23,7 +25,9 @@ const App = () => {
         <Route path='/about' element={<About/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/about' element={<About/>}/>
-        <Route path='/crime-23' element={<Crime23/>}/>
+        <Route path='/south' element={<South/>}/>
+        <Route path='/east' element={<East/>}/>
+        <Route path='/west' element={<West/>}/>
       </Routes>
     </BrowserRouter>
     </MyState>

@@ -43,6 +43,9 @@ function MyState(props) {
 
     const [latestPost, setLatestPost] = useState([]);
 
+    const [southCrime, setSouthCrime] = useState([]);
+    const [eastCrime, setEastCrime] = useState([]);
+    const [westCrime, setWestCrime] = useState([]);
 
     const addPostHandle = async (e) => {
         const formData = new FormData();
@@ -273,11 +276,25 @@ function MyState(props) {
         }
     }
 
-
+    const crimeSouth = async () => {
+        try {
+            const res = await fetch(`http://127.0.0.1:8080/get_district/east`, {
+                method: `GET`,
+                headers: {
+                    'Content-Type': "application/json",
+                }
+            });
+            const crimetData = await res.json();
+            console.log(crimetData); // Check the response here
+            setSouthCrime(crimetData);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 
     return (
-        <myContext.Provider value={ { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts, user, setUser, userData, likeHandler, disLikeHandler, showCommentModal, comment, getAllComments, cId, AddComment, text, setText, category, setCategory, region, setRegion, getAllUsers, allUser, setAllUser, gangrape, setGangrape, murder, setMurder, targetkilling, murderrobbery, bombblast, highway, carsnatch, bank, getAllUserComments, userscomment, north, east, west, south, central, latestPost } }>
+        <myContext.Provider value={ { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts, user, setUser, userData, likeHandler, disLikeHandler, showCommentModal, comment, getAllComments, cId, AddComment, text, setText, category, setCategory, region, setRegion, getAllUsers, allUser, setAllUser, gangrape, setGangrape, murder, setMurder, targetkilling, murderrobbery, bombblast, highway, carsnatch, bank, getAllUserComments, userscomment, north, east, west, south, central, latestPost , crimeSouth , southCrime } }>
             { props.children }
         </myContext.Provider>
     )

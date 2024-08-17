@@ -14,10 +14,11 @@ import { formatDistanceToNow } from 'date-fns';
 
 const Home = () => {
   const context = useContext(myContext);
-  const {allNotes, getAllPosts, gangrape , murder , targetkilling , murderrobbery , bombblast , highway , carsnatch , bank , latestPost} = context;
+  const {allNotes, getAllPosts, gangrape , murder , targetkilling , murderrobbery , bombblast , highway , carsnatch , bank , latestPost , crimeSouth , southCrime} = context;
 
   useEffect(() => {
     getAllPosts();
+    crimeSouth();
 }, [allNotes]);
 
   const CrimeCard = () => (
@@ -68,12 +69,56 @@ const Home = () => {
           <img src={ cardLogo } alt="Card logo" />
         </div>
         <div className="desc">
-          <h1 className='font-semibold text-2xl'>Crime Reports Of 2023</h1>
-          <p className='font-light text-md'>Karachi East, West, South, North</p>
+          <h1 className='font-semibold text-2xl'>Crime Reports Of South</h1>
+          <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
         </div>
       </div>
       <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
-        <Link to="/crime-23" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
+        <Link to="/south" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
+      </div>
+    </div>
+          {/* <CrimeCard /> */}
+          {/* <CrimeCard /> */}
+        </div>
+
+        <div className="crime-cards w-[90vw] mx-auto">
+        <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
+      <div className="card-top w-[96%] mx-auto flex justify-between items-center">
+        <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
+        <img src={ bookmark } alt="Bookmark" />
+      </div>
+      <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
+        <div className="logo">
+          <img src={ cardLogo } alt="Card logo" />
+        </div>
+        <div className="desc">
+          <h1 className='font-semibold text-2xl'>Crime Reports Of East</h1>
+          <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
+        </div>
+      </div>
+      <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
+        <Link to="/east" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
+      </div>
+    </div>
+        </div>
+
+        <div className="crime-cards w-[90vw] mx-auto">
+        <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
+      <div className="card-top w-[96%] mx-auto flex justify-between items-center">
+        <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
+        <img src={ bookmark } alt="Bookmark" />
+      </div>
+      <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
+        <div className="logo">
+          <img src={ cardLogo } alt="Card logo" />
+        </div>
+        <div className="desc">
+          <h1 className='font-semibold text-2xl'>Crime Reports Of West</h1>
+          <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
+        </div>
+      </div>
+      <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
+        <Link to="/west" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
       </div>
     </div>
           {/* <CrimeCard /> */}
