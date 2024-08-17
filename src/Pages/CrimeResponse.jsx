@@ -115,10 +115,11 @@ const CrimeResponse = () => {
                                         </div>
                                         <div className="desc px-5 py-5">
                                             <h1 className='text-xl font-bold'>{data.title}</h1>
-                                            <p className='font-light text-sm'>{data.description} ...</p>
-                                        </div>
-                                        <div className="icons px-5 flex justify-end">
-                                            {/* <img className='w-[50px] h-[50px]' src={`src/images/${user.image}`} alt="" /> */}
+                                            <p className='font-light text-md'>{data.description} ...</p>
+                                            <div className="flex gap-2">
+                                                <div className='bg-[#206e64] text-white font-light px-2 rounded-md'>{data.category}</div>
+                                                <div className='bg-[#206e64] text-white font-light px-2 rounded-md'>{data.region}</div>
+                                            </div>
                                         </div>
                                         <div className="anonymous px-5 flex items-center gap-2 text-md font-semibold">
                                             <img className='bg-gray-300 w-[50px] h-[50px] rounded-full' src={`src/images/${data.user.image}`} alt="" />
