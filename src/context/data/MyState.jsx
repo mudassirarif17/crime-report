@@ -26,6 +26,9 @@ function MyState(props) {
     const [cId , setCId] = useState('');
     const [text , setText] = useState('');
 
+    const [gangrape , setGangrape] = useState([]);
+    const [murder , setMurder] = useState([]);
+
     const addPostHandle = async (e) => {
         const formData = new FormData();
         formData.append('title', title);
@@ -87,6 +90,13 @@ function MyState(props) {
             console.log(notesData); // Check the response here
             setAllNotes(notesData);
             setSearchNotes(notesData);
+
+            let rape = searchNotes.filter((data)=> data.category === "GANG RAPE")
+            setGangrape(rape);
+
+            let murder = searchNotes.filter((data)=> data.category === "MURDER")
+            setMurder(murder);
+
         } catch (error) {
             console.log(error);
         } finally {
@@ -196,7 +206,7 @@ function MyState(props) {
         
 
     return (
-        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText , category , setCategory , region , setRegion , getAllUsers , allUser , setAllUser}}>
+        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText , category , setCategory , region , setRegion , getAllUsers , allUser , setAllUser , gangrape , setGangrape , murder , setMurder}}>
             {props.children}
         </myContext.Provider>
     )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext , useEffect } from 'react'
 import Layout from "../Pages/Layout";
 import bookmark from "../assets/bookmark.png";
 import cardLogo from "../assets/crime-card-icon.png";
@@ -8,18 +8,28 @@ import blog2 from "../assets/blog2.png";
 import arrow from "../assets/arrow-right.png";
 import laptopPeople from "../assets/laptop-people.png";
 
+import myContext from '../context/data/myContext';
+
+
 
 
 const Home = () => {
+  const context = useContext(myContext);
+  const {allNotes, getAllPosts, gangrape , murder} = context;
+
+  useEffect(() => {
+    getAllPosts();
+}, [allNotes]);
+
   const CrimeCard = () => (
     <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
       <div className="card-top w-[96%] mx-auto flex justify-between items-center">
         <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
-        <img src={bookmark} alt="Bookmark" />
+        <img src={ bookmark } alt="Bookmark" />
       </div>
       <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
         <div className="logo">
-          <img src={cardLogo} alt="Card logo" />
+          <img src={ cardLogo } alt="Card logo" />
         </div>
         <div className="desc">
           <h1 className='font-semibold text-2xl'>Crime Reports Of 2023</h1>
@@ -54,13 +64,13 @@ const Home = () => {
         </div>
 
         <div className="crime-category bg-[#dffaf6]">
-            <h1 className='text-center font-bold text-4xl py-5'>Browse by Crime Category</h1>
-            <p className='text-center font-light'>Explore Crime Types and Patterns</p>
+          <h1 className='text-center font-bold text-4xl py-5'>Browse by Crime Category</h1>
+          <p className='text-center font-light'>Explore Crime Types and Patterns</p>
           <div class="grid w-[85%] mx-auto cols-1 md:grid-cols-4 gap-4 py-10">
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>MURDER</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>20</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{murder.length}</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
@@ -95,40 +105,40 @@ const Home = () => {
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>GANG RAPE</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>12</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{gangrape.length}</p>
             </div>
 
           </div>
         </div>
-        
+
         <div className="community flex md:w-[65vw] mx-auto flex-col md:flex-row md:justify-between items-center my-5">
-            <div className="comm-left flex  justify-between gap-2 w-[90%] md:w-[45%] h-[50vh]">
-              <img src={laptopPeople} alt="" />
+          <div className="comm-left flex  justify-between gap-2 w-[90%] md:w-[45%] h-[50vh]">
+            <img src={ laptopPeople } alt="" />
+          </div>
+
+          <div className="comm-right w-[93%] md:w-[50%] ">
+            <div className="top px-4">
+              <h1 className='font-bold text-lg md:text-4xl my-2'>Enhancing Community</h1>
+              <h1 className='font-bold text-lg md:text-4xl text-[#309689] my-2'>Safety Together</h1>
+              <p className='font-light text-sm'>In our shared mission to enhance community safety, collaboration is key. By working together, residents, law enforcement, and local organizations can create a proactive approach to crime prevention. Our platform encourages open communication and reporting, empowering everyone to contribute to a safer environment. With access to real-time data and resources, community members can stay informed about potential risks. Together, we can build a resilient community that prioritizes safety and well-being. Join us in fostering a culture of vigilance and support, where everyone plays a role in keeping our neighborhoods secure.</p>
             </div>
 
-            <div className="comm-right w-[93%] md:w-[50%] ">
-              <div className="top px-4">
-                <h1 className='font-bold text-lg md:text-4xl my-2'>Enhancing Community</h1>
-                <h1 className='font-bold text-lg md:text-4xl text-[#309689] my-2'>Safety Together</h1>
-                <p className='font-light text-sm'>In our shared mission to enhance community safety, collaboration is key. By working together, residents, law enforcement, and local organizations can create a proactive approach to crime prevention. Our platform encourages open communication and reporting, empowering everyone to contribute to a safer environment. With access to real-time data and resources, community members can stay informed about potential risks. Together, we can build a resilient community that prioritizes safety and well-being. Join us in fostering a culture of vigilance and support, where everyone plays a role in keeping our neighborhoods secure.</p>
-              </div>
+            <div className="btm px-4 my-4">
+              <div className="btm-top flex flex-col md:flex-row">
 
-              <div className="btm px-4 my-4">
-                <div className="btm-top flex flex-col md:flex-row">
-                  
-                </div>
-                <div className="btm-btm my-2  flex flex-col md:flex-row">
-                 
-                </div>
               </div>
+              <div className="btm-btm my-2  flex flex-col md:flex-row">
 
+              </div>
             </div>
 
           </div>
 
+        </div>
+
         <div className="response-people bg-[#dffaf6] mt-10">
-            <h1 className='text-center font-bold text-3xl py-5'>Response From People On Complaints</h1>
-            <p className='text-center font-light'>At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum id ...</p>
+          <h1 className='text-center font-bold text-3xl py-5'>Response From People On Complaints</h1>
+          <p className='text-center font-light'>At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum id ...</p>
           <div class="grid w-[85%] mx-auto cols-1 md:grid-cols-3 gap-4 py-10">
 
             <div className="card cursor-pointer my-0 md:my-4 rounded-lg shadow-md bg-white py-7">
@@ -137,7 +147,7 @@ const Home = () => {
                 <p className='font-light text-sm'>I witnessed the incident and immediately contacted the authorities. We need to work together to increase neighborhood watch programs to prevent further occurrences.</p>
               </div>
               <div className="icons px-5 flex justify-end">
-                <img src={quotes} alt="" />
+                <img src={ quotes } alt="" />
               </div>
               <div className="anonymous px-5 flex items-center gap-2 text-md font-semibold">
                 <div className='bg-gray-300 w-[50px] h-[50px] rounded-full'></div>
@@ -151,7 +161,7 @@ const Home = () => {
                 <p className='font-light text-sm'>This is alarming! We should organize a community meeting to discuss safety measures and possibly install more street lights in the area.</p>
               </div>
               <div className="icons px-5 flex justify-end">
-                <img src={quotes} alt="" />
+                <img src={ quotes } alt="" />
               </div>
               <div className="anonymous px-5 flex items-center gap-2 text-md font-semibold">
                 <div className='bg-gray-300 w-[50px] h-[50px] rounded-full'></div>
@@ -165,7 +175,7 @@ const Home = () => {
                 <p className='font-light text-sm'>This is a devastating incident that requires urgent action. We must support the victims and advocate for stronger community support services and educational programs ...</p>
               </div>
               <div className="icons px-5 flex justify-end">
-                <img src={quotes} alt="" />
+                <img src={ quotes } alt="" />
               </div>
               <div className="anonymous px-5 flex items-center gap-2 text-md font-semibold">
                 <div className='bg-gray-300 w-[50px] h-[50px] rounded-full'></div>
@@ -183,25 +193,25 @@ const Home = () => {
           </div>
           <div className="btm my-4 flex flex-col md:flex-row justify-between">
             <div className="btm-left w-[100%] md:w-[48%]">
-              <img src={blog2} alt="" />
+              <img src={ blog2 } alt="" />
               <div className="desc py-2 px-2">
                 <p className="date text-sm font-light">17 Feb</p>
                 <h1 className='font-bold text-lg md:text-2xl'>CCTV footage: Thief uses child as a cover while lifting bike in Karachi
                 </h1>
                 <div className='flex gap-2 items-center my-2'>
                   <h1 className='text-[#309689] text-sm md:text-md font-semibold'>Read More</h1>
-                  <img src={arrow} alt="" />
+                  <img src={ arrow } alt="" />
                 </div>
               </div>
             </div>
             <div className="btm-right w-[100%] md:w-[48%]">
-              <img src={blog1} alt="" />
+              <img src={ blog1 } alt="" />
               <div className="desc py-2 px-2">
                 <p className="date text-sm font-light">24 Jan</p>
                 <h1 className='font-bold text-lg md:text-2xl'>Lyari gang war criminals among 25 arrested in Karachi</h1>
                 <div className='flex gap-2 items-center my-2'>
                   <h1 className='text-[#309689] text-sm md:text-md font-semibold'>Read More</h1>
-                  <img src={arrow} alt="" />
+                  <img src={ arrow } alt="" />
                 </div>
               </div>
             </div>
