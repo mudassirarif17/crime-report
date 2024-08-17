@@ -174,29 +174,40 @@ const CrimeResponse = () => {
                             </div>
 
                             <div className="inp my-4">
-                                <select className='w-[100%] px-4 py-1 rounded-lg outline-none' id="region" name="region">
-                                    <option>-- Select Region --</option>
-                                    <option onChange={setRegion("East")}>East</option>
-                                    <option onChange={setRegion("North")}>North</option>
-                                    <option onChange={setRegion("West")}>West</option>
-                                    <option onChange={setRegion("South")}>South</option>
-                                    <option onChange={setRegion("Central")}>Central</option>
-                                </select>
-                            </div>
+    <select
+        className="w-[100%] px-4 py-1 rounded-lg outline-none"
+        id="region"
+        name="region"
+        onChange={(e) => setRegion(e.target.value)}
+    >
+        <option>-- Select Region --</option>
+        <option value="East">East</option>
+        <option value="North">North</option>
+        <option value="West">West</option>
+        <option value="South">South</option>
+        <option value="Central">Central</option>
+    </select>
+</div>
 
-                            <div className="inp my-4">
-                                <select className='w-[100%] px-4 py-1 rounded-lg outline-none' id="region" name="region">
-                                    <option>-- Select Category --</option>
-                                    <option onChange={setCategory("MURDER")}>MURDER</option>
-                                    <option onChange={setCategory("TARGETED KILLING")}>TARGETED KILLING</option>
-                                    <option onChange={setCategory("MURDER DURING ROBBERY")}>MURDER DURING ROBBERY</option>
-                                    <option onChange={setCategory("BOMB BLAST")}>BOMB BLAST</option>
-                                    <option onChange={setCategory("HIGH WAY ROBBERY")}>HIGH WAY ROBBERY</option>
-                                    <option onChange={setCategory("BANK ROBBERY")}>BANK ROBBERY</option>
-                                    <option onChange={setCategory("CAR SNATCHING")}>CAR SNATCHING</option>
-                                    <option onChange={setCategory("GANG RAPE")}>GANG RAPE</option>
-                                </select>
-                            </div>
+<div className="inp my-4">
+    <select
+        className="w-[100%] px-4 py-1 rounded-lg outline-none"
+        id="category"
+        name="category"
+        onChange={(e) => setCategory(e.target.value)}
+    >
+        <option>-- Select Category --</option>
+        <option value="MURDER">MURDER</option>
+        <option value="TARGETED KILLING">TARGETED KILLING</option>
+        <option value="MURDER DURING ROBBERY">MURDER DURING ROBBERY</option>
+        <option value="BOMB BLAST">BOMB BLAST</option>
+        <option value="HIGH WAY ROBBERY">HIGH WAY ROBBERY</option>
+        <option value="BANK ROBBERY">BANK ROBBERY</option>
+        <option value="CAR SNATCHING">CAR SNATCHING</option>
+        <option value="GANG RAPE">GANG RAPE</option>
+    </select>
+</div>
+
 
                             <div className="inp my-4">
                                 <p className='text-sm mt-3 pl-2'>Report image</p>

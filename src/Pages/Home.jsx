@@ -15,7 +15,7 @@ import myContext from '../context/data/myContext';
 
 const Home = () => {
   const context = useContext(myContext);
-  const {allNotes, getAllPosts, gangrape , murder} = context;
+  const {allNotes, getAllPosts, gangrape , murder , targetkilling , murderrobbery , bombblast , highway , carsnatch , bank} = context;
 
   useEffect(() => {
     getAllPosts();
@@ -75,32 +75,32 @@ const Home = () => {
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>TARGETED KILLING</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>50</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{targetkilling.length}</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>MURDER DURING ROBBERY</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>10</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{murderrobbery.length}</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>BOMB BLAST</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>2</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{bombblast.length}</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>HIGH WAY ROBBERY</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>30</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{highway.length}</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>BANK ROBBERY</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>10</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{bank.length}</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>CAR SNATCHING</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>25</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{carsnatch.length}</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">

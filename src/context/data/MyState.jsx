@@ -27,7 +27,14 @@ function MyState(props) {
     const [text , setText] = useState('');
 
     const [gangrape , setGangrape] = useState([]);
+    const [targetkilling , setTargetkilling] = useState([]);
+    const [murderrobbery , setMurderRobbery] = useState([]);
     const [murder , setMurder] = useState([]);
+    const [bombblast , setBombblast] = useState([]);
+    const [highway , setHighway] = useState([]);
+    const [bank , setBank] = useState([]);
+    const [carsnatch , setCarsnatch] = useState([]);
+
 
     const addPostHandle = async (e) => {
         const formData = new FormData();
@@ -96,6 +103,28 @@ function MyState(props) {
 
             let murder = searchNotes.filter((data)=> data.category === "MURDER")
             setMurder(murder);
+
+            let targetkilling = searchNotes.filter((data)=> data.category === "TARGETED KILLING")
+            setTargetkilling(targetkilling);
+
+            let murderrobbery = searchNotes.filter((data)=> data.category === "MURDER DURING ROBBERY")
+            setMurderRobbery(murderrobbery);
+
+            let bombblast = searchNotes.filter((data)=> data.category === "BOMB BLAST")
+            setBombblast(bombblast);
+
+            let high = searchNotes.filter((data)=> data.category === "HIGH WAY ROBBERY")
+            setHighway(high);
+
+            let bankrob = searchNotes.filter((data)=> data.category === "BANK ROBBERY")
+            setBank(bankrob);
+
+            let carsn = searchNotes.filter((data)=> data.category === "CAR SNATCHING")
+            setCarsnatch(carsn);
+
+
+
+
 
         } catch (error) {
             console.log(error);
@@ -206,7 +235,7 @@ function MyState(props) {
         
 
     return (
-        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText , category , setCategory , region , setRegion , getAllUsers , allUser , setAllUser , gangrape , setGangrape , murder , setMurder}}>
+        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText , category , setCategory , region , setRegion , getAllUsers , allUser , setAllUser , gangrape , setGangrape , murder , setMurder , targetkilling , murderrobbery , bombblast , highway , carsnatch , bank}}>
             {props.children}
         </myContext.Provider>
     )
