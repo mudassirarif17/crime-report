@@ -169,25 +169,25 @@ const CrimeResponse = () => {
                             <div className="inp my-4">
                                 <select className='w-[100%] px-4 py-1 rounded-lg outline-none' id="region" name="region">
                                     <option>-- Select Region --</option>
-                                    <option value={region} setRegion={()=>setRegion(e.target.value)}>East</option>
-                                    <option value={region} setRegion={()=>setRegion(e.target.value)}>North</option>
-                                    <option value={region} setRegion={()=>setRegion(e.target.value)}>West</option>
-                                    <option value={region} setRegion={()=>setRegion(e.target.value)}>South</option>
-                                    <option value={region} setRegion={()=>setRegion(e.target.value)}>Central</option>
+                                    <option onChange={setRegion("East")}>East</option>
+                                    <option onChange={setRegion("North")}>North</option>
+                                    <option onChange={setRegion("West")}>West</option>
+                                    <option onChange={setRegion("South")}>South</option>
+                                    <option onChange={setRegion("Central")}>Central</option>
                                 </select>
                             </div>
 
                             <div className="inp my-4">
                                 <select className='w-[100%] px-4 py-1 rounded-lg outline-none' id="region" name="region">
                                     <option>-- Select Category --</option>
-                                    <option value={category} onChange={()=>setCategory(e.target.value)}>MURDER</option>
-                                    <option value={category} onChange={()=>setCategory(e.target.value)}>TARGETED KILLING</option>
-                                    <option value={category} onChange={()=>setCategory(e.target.value)}>MURDER DURING ROBBERY</option>
-                                    <option value={category} onChange={()=>setCategory(e.target.value)}>BOMB BLAST</option>
-                                    <option value={category} onChange={()=>setCategory(e.target.value)}>HIGH WAY ROBBERY</option>
-                                    <option value={category} onChange={()=>setCategory(e.target.value)}>BANK ROBBERY</option>
-                                    <option value={category} onChange={()=>setCategory(e.target.value)}>CAR SNATCHING</option>
-                                    <option value={category} onChange={()=>setCategory(e.target.value)}>GANG RAPE</option>
+                                    <option onChange={setCategory("MURDER")}>MURDER</option>
+                                    <option onChange={setCategory("TARGETED KILLING")}>TARGETED KILLING</option>
+                                    <option onChange={setCategory("MURDER DURING ROBBERY")}>MURDER DURING ROBBERY</option>
+                                    <option onChange={setCategory("BOMB BLAST")}>BOMB BLAST</option>
+                                    <option onChange={setCategory("HIGH WAY ROBBERY")}>HIGH WAY ROBBERY</option>
+                                    <option onChange={setCategory("BANK ROBBERY")}>BANK ROBBERY</option>
+                                    <option onChange={setCategory("CAR SNATCHING")}>CAR SNATCHING</option>
+                                    <option onChange={setCategory("GANG RAPE")}>GANG RAPE</option>
                                 </select>
                             </div>
 

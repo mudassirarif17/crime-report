@@ -48,7 +48,7 @@ router.get("/getpostbyid/:id" , async (req , res)=>{
 
 // Create a post
 router.post('/add_post', authMiddleware , upload.single("image") , async (req, res) => {
-    const { title, description } = req.body;
+    const { title, description , category , region } = req.body;
     const imageName = req.file.filename;
 
     try {
@@ -56,6 +56,8 @@ router.post('/add_post', authMiddleware , upload.single("image") , async (req, r
             image : imageName,
             title,
             description,
+            category,
+            region,
             user: req.userId,
         });
 
