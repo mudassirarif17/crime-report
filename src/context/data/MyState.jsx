@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 function MyState(props) {
-    
+
     const [user, setUser] = useState([]);
     const [allUser, setAllUser] = useState([]);
 
@@ -21,25 +21,27 @@ function MyState(props) {
     const [searchNotes, setSearchNotes] = useState([]);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false); // Added loading state
-    const [comment , setComment] = useState([]);
-    const [userscomment , setUsersComment] = useState([]);
-    const [cId , setCId] = useState('');
-    const [text , setText] = useState('');
+    const [comment, setComment] = useState([]);
+    const [userscomment, setUsersComment] = useState([]);
+    const [cId, setCId] = useState('');
+    const [text, setText] = useState('');
 
-    const [gangrape , setGangrape] = useState([]);
-    const [targetkilling , setTargetkilling] = useState([]);
-    const [murderrobbery , setMurderRobbery] = useState([]);
-    const [murder , setMurder] = useState([]);
-    const [bombblast , setBombblast] = useState([]);
-    const [highway , setHighway] = useState([]);
-    const [bank , setBank] = useState([]);
-    const [carsnatch , setCarsnatch] = useState([]);
+    const [gangrape, setGangrape] = useState([]);
+    const [targetkilling, setTargetkilling] = useState([]);
+    const [murderrobbery, setMurderRobbery] = useState([]);
+    const [murder, setMurder] = useState([]);
+    const [bombblast, setBombblast] = useState([]);
+    const [highway, setHighway] = useState([]);
+    const [bank, setBank] = useState([]);
+    const [carsnatch, setCarsnatch] = useState([]);
 
-    const [north , setNorth] = useState([]);
-    const [west , setWest] = useState([]);
-    const [south , setSouth] = useState([]);
-    const [east , setEast] = useState([]);
-    const [central , setCentral] = useState([]);
+    const [north, setNorth] = useState([]);
+    const [west, setWest] = useState([]);
+    const [south, setSouth] = useState([]);
+    const [east, setEast] = useState([]);
+    const [central, setCentral] = useState([]);
+
+    const [latestPost, setLatestPost] = useState([]);
 
 
     const addPostHandle = async (e) => {
@@ -61,7 +63,7 @@ function MyState(props) {
             if (res.error) {
                 toast.error(res.error, {
                     position: "top-right",
-                    autoClose: 1000,  
+                    autoClose: 1000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -76,7 +78,7 @@ function MyState(props) {
                 setImage(null);
                 toast.success("Report Added", {
                     position: "top-right",
-                    autoClose: 1000,  
+                    autoClose: 1000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -104,44 +106,51 @@ function MyState(props) {
             setAllNotes(notesData);
             setSearchNotes(notesData);
 
-            let rape = searchNotes.filter((data)=> data.category === "GANG RAPE")
+            let rape = searchNotes.filter((data) => data.category === "GANG RAPE")
             setGangrape(rape);
 
-            let murder = searchNotes.filter((data)=> data.category === "MURDER")
+            let murder = searchNotes.filter((data) => data.category === "MURDER")
             setMurder(murder);
 
-            let targetkilling = searchNotes.filter((data)=> data.category === "TARGETED KILLING")
+            let targetkilling = searchNotes.filter((data) => data.category === "TARGETED KILLING")
             setTargetkilling(targetkilling);
 
-            let murderrobbery = searchNotes.filter((data)=> data.category === "MURDER DURING ROBBERY")
+            let murderrobbery = searchNotes.filter((data) => data.category === "MURDER DURING ROBBERY")
             setMurderRobbery(murderrobbery);
 
-            let bombblast = searchNotes.filter((data)=> data.category === "BOMB BLAST")
+            let bombblast = searchNotes.filter((data) => data.category === "BOMB BLAST")
             setBombblast(bombblast);
 
-            let high = searchNotes.filter((data)=> data.category === "HIGH WAY ROBBERY")
+            let high = searchNotes.filter((data) => data.category === "HIGH WAY ROBBERY")
             setHighway(high);
 
-            let bankrob = searchNotes.filter((data)=> data.category === "BANK ROBBERY")
+            let bankrob = searchNotes.filter((data) => data.category === "BANK ROBBERY")
             setBank(bankrob);
 
-            let carsn = searchNotes.filter((data)=> data.category === "CAR SNATCHING")
+            let carsn = searchNotes.filter((data) => data.category === "CAR SNATCHING")
             setCarsnatch(carsn);
 
-            let n = searchNotes.filter((data)=> data.region === "North")
+            let n = searchNotes.filter((data) => data.region === "North")
             setNorth(n);
 
-            let e = searchNotes.filter((data)=> data.region === "East")
+            let e = searchNotes.filter((data) => data.region === "East")
             setEast(e);
 
-            let s = searchNotes.filter((data)=> data.region === "South")
+            let s = searchNotes.filter((data) => data.region === "South")
             setSouth(s);
 
-            let w = searchNotes.filter((data)=> data.region === "West")
+            let w = searchNotes.filter((data) => data.region === "West")
             setWest(w);
 
-            let c = searchNotes.filter((data)=> data.region === "Central")
+            let c = searchNotes.filter((data) => data.region === "Central")
             setCentral(c);
+
+            let today = new Date().setHours(0, 0, 0, 0); // Get the start of today's date in milliseconds
+            let lts = searchNotes
+                .filter((data) => new Date(data.date).setHours(0, 0, 0, 0) === today) // Filter by today's date
+                .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date in descending order
+                .slice(0, 2); // Take the first 2 elements
+                setLatestPost(lts);
 
         } catch (error) {
             console.log(error);
@@ -152,19 +161,19 @@ function MyState(props) {
 
     const userData = async () => {
         const res = await fetch(`http://localhost:5000/api/auth/getuser`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'auth-token': localStorage.getItem('token')
-          }
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            }
         });
-    
+
         let userData = await res.json();
         // console.log(userData);
         setUser(userData);
-      }
+    }
 
-      const likeHandler = async (id) => {
+    const likeHandler = async (id) => {
         const res = await fetch(`http://localhost:5000/api/posts/like/${id}`, {
             'method': "PUT",
             headers: {
@@ -175,9 +184,9 @@ function MyState(props) {
 
         const postData = await res.json();
         getAllPosts();
-      }
+    }
 
-      const disLikeHandler = async (id) => {
+    const disLikeHandler = async (id) => {
         const res = await fetch(`http://localhost:5000/api/posts/dislike/${id}`, {
             'method': "PUT",
             headers: {
@@ -188,9 +197,9 @@ function MyState(props) {
 
         const postData = await res.json();
         getAllPosts();
-      }
+    }
 
-      const showCommentModal = (id) => {
+    const showCommentModal = (id) => {
         if (document.getElementById('modal').classList.contains('hidden')) {
             document.getElementById('modal').classList.remove('hidden');
             getAllComments(id);
@@ -228,7 +237,7 @@ function MyState(props) {
         const comm = await res.json();
         setText('');
         getAllComments(id);
-        
+
     }
 
     const getAllUsers = async () => {
@@ -264,12 +273,12 @@ function MyState(props) {
         }
     }
 
-    
-        
+
+
 
     return (
-        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText , category , setCategory , region , setRegion , getAllUsers , allUser , setAllUser , gangrape , setGangrape , murder , setMurder , targetkilling , murderrobbery , bombblast , highway , carsnatch , bank , getAllUserComments , userscomment , north , east , west , south , central}}>
-            {props.children}
+        <myContext.Provider value={ { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts, user, setUser, userData, likeHandler, disLikeHandler, showCommentModal, comment, getAllComments, cId, AddComment, text, setText, category, setCategory, region, setRegion, getAllUsers, allUser, setAllUser, gangrape, setGangrape, murder, setMurder, targetkilling, murderrobbery, bombblast, highway, carsnatch, bank, getAllUserComments, userscomment, north, east, west, south, central, latestPost } }>
+            { props.children }
         </myContext.Provider>
     )
 }

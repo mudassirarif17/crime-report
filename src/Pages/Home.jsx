@@ -3,19 +3,18 @@ import Layout from "../Pages/Layout";
 import bookmark from "../assets/bookmark.png";
 import cardLogo from "../assets/crime-card-icon.png";
 import quotes from "../assets/Quotes.png";
-import blog1 from "../assets/blog1.png";
-import blog2 from "../assets/blog2.png";
 import arrow from "../assets/arrow-right.png";
 import laptopPeople from "../assets/laptop-people.png";
-
 import myContext from '../context/data/myContext';
+import { Link } from 'react-router-dom';
+import { formatDistanceToNow } from 'date-fns';
 
 
 
 
 const Home = () => {
   const context = useContext(myContext);
-  const {allNotes, getAllPosts, gangrape , murder , targetkilling , murderrobbery , bombblast , highway , carsnatch , bank} = context;
+  const {allNotes, getAllPosts, gangrape , murder , targetkilling , murderrobbery , bombblast , highway , carsnatch , bank , latestPost} = context;
 
   useEffect(() => {
     getAllPosts();
@@ -192,29 +191,22 @@ const Home = () => {
             <p className='py-3 text-sm md:text-md font-light'>Crime in Karachi: What’s Happening Now?</p>
           </div>
           <div className="btm my-4 flex flex-col md:flex-row justify-between">
-            <div className="btm-left w-[100%] md:w-[48%]">
-              <img src={ blog2 } alt="" />
+            {
+              latestPost.map((data , index)=>(
+                <div className="btm-left w-[100%] md:w-[48%] cursor-pointer">
+              <img className='w-[40%] h-[40%]' src={`src/images/${data.image}`} alt="" />
               <div className="desc py-2 px-2">
-                <p className="date text-sm font-light">17 Feb</p>
-                <h1 className='font-bold text-lg md:text-2xl'>CCTV footage: Thief uses child as a cover while lifting bike in Karachi
-                </h1>
+                <p className="date text-sm font-light">{formatDistanceToNow(new Date(data.date), { addSuffix: true })}</p>
+                <h1 className='font-bold text-lg md:text-2xl'>{data.title}</h1>
+                <p>{data.description} ...</p>
                 <div className='flex gap-2 items-center my-2'>
-                  <h1 className='text-[#309689] text-sm md:text-md font-semibold'>Read More</h1>
+                  <Link to='/crime-response' className='text-[#309689] text-sm md:text-md font-semibold'>Read More</Link>
                   <img src={ arrow } alt="" />
                 </div>
               </div>
             </div>
-            <div className="btm-right w-[100%] md:w-[48%]">
-              <img src={ blog1 } alt="" />
-              <div className="desc py-2 px-2">
-                <p className="date text-sm font-light">24 Jan</p>
-                <h1 className='font-bold text-lg md:text-2xl'>Lyari gang war criminals among 25 arrested in Karachi</h1>
-                <div className='flex gap-2 items-center my-2'>
-                  <h1 className='text-[#309689] text-sm md:text-md font-semibold'>Read More</h1>
-                  <img src={ arrow } alt="" />
-                </div>
-              </div>
-            </div>
+              ))
+            }
           </div>
         </div>
 
