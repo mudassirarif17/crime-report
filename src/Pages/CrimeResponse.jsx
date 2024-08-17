@@ -22,11 +22,12 @@ const CrimeResponse = () => {
 
 
     const context = useContext(myContext);
-    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts, likeHandler, disLikeHandler, user, setUser, userData, showCommentModal, comment, getAllComments, AddComment, cId, text, setText , category , setCategory , region , setRegion } = context;
+    const { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts, likeHandler, disLikeHandler, user, setUser, userData, showCommentModal, comment, getAllComments, AddComment, cId, text, setText , category , setCategory , region , setRegion , getAllUsers , allUser , setAllUser } = context;
 
     useEffect(() => {
         getAllPosts();
         userData();
+        getAllUsers();
     }, [allNotes]);
 
 
@@ -46,16 +47,19 @@ const CrimeResponse = () => {
                         <div className="top w-[100%] md:w-[95%] px-4 my-16">
                             <div className="grid cols-1 md:grid-cols-3 gap-4 ">
                                 <div className="card cursor-pointer bg-[#077265] h-[25vh] md:h-[32vh] rounded-lg">
-                                    <p className='font-semibold text-xl text-center my-4'>Complaint Box</p>
-                                    <p className='text-center text-3xl font-semibold my-5'>3</p>
+                                    <div className='flex flex-col items-center justify-center my-5'>
+                                        <img class='w-[60px] h-[60px] rounded-full' src={`src/images/${user.image}`} alt="" />
+                                        <h1 className='font-bold'>Hi {user.username}</h1>
+                                        <h1 className='font-semibold'>{user.email}</h1>
+                                    </div>
+                                </div>
+                                <div className="card cursor-pointer bg-[#077265] h-[25vh] md:h-[32vh] rounded-lg">
+                                    <p className='font-semibold text-xl text-center my-4'>Users</p>
+                                    <p className='text-center text-3xl font-semibold my-5'>{allUser.length}</p>
                                 </div>
                                 <div className="card cursor-pointer bg-[#077265] h-[25vh] md:h-[32vh] rounded-lg">
                                     <p className='font-semibold text-xl text-center my-4'>Complaints</p>
-                                    <p className='text-center text-3xl font-semibold my-5'>99</p>
-                                </div>
-                                <div className="card cursor-pointer bg-[#077265] h-[25vh] md:h-[32vh] rounded-lg">
-                                    <p className='font-semibold text-xl text-center my-4'>Resolved Complaints</p>
-                                    <p className='text-center text-3xl font-semibold my-5'>56</p>
+                                    <p className='text-center text-3xl font-semibold my-5'>{searchNotes.length}</p>
                                 </div>
                             </div>
                         </div>

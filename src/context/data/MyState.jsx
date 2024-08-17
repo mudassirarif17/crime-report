@@ -9,6 +9,7 @@ function MyState(props) {
     // const name = "Mudassir";
     
     const [user, setUser] = useState([]);
+    const [allUser, setAllUser] = useState([]);
 
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
@@ -174,11 +175,28 @@ function MyState(props) {
         
     }
 
+    const getAllUsers = async () => {
+        setLoading(true);
+        try {
+            const res = await fetch("http://localhost:5000/api/auth/getalluser", {
+                method: `GET`,
+                headers: {
+                    'Content-Type': "application/json", // Corrected typo here
+                }
+            });
+            const userData = await res.json();
+            // console.log(notesData); // Check the response here
+            setAllUser(userData);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     
         
 
     return (
-        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText , category , setCategory , region , setRegion}}>
+        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText , category , setCategory , region , setRegion , getAllUsers , allUser , setAllUser}}>
             {props.children}
         </myContext.Provider>
     )
