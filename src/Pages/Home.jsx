@@ -36,7 +36,7 @@ const Home = () => {
         </div>
       </div>
       <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
-        <button className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See More</button>
+        <Link to="/crime-23" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
       </div>
     </div>
   );
@@ -58,8 +58,26 @@ const Home = () => {
         </div>
 
         <div className="crime-cards w-[90vw] mx-auto">
-          <CrimeCard />
-          <CrimeCard />
+        <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
+      <div className="card-top w-[96%] mx-auto flex justify-between items-center">
+        <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
+        <img src={ bookmark } alt="Bookmark" />
+      </div>
+      <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
+        <div className="logo">
+          <img src={ cardLogo } alt="Card logo" />
+        </div>
+        <div className="desc">
+          <h1 className='font-semibold text-2xl'>Crime Reports Of 2023</h1>
+          <p className='font-light text-md'>Karachi East, West, South, North</p>
+        </div>
+      </div>
+      <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
+        <Link to="/crime-23" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
+      </div>
+    </div>
+          {/* <CrimeCard /> */}
+          {/* <CrimeCard /> */}
         </div>
 
         <div className="crime-category bg-[#dffaf6]">
