@@ -42,5 +42,17 @@ router.get("/getallcomments/:id" , async (req , res)=>{
     }
 })
 
+router.get("/getallusercomments" , async (req , res)=>{
+    try {
+        const comment = await Comment.find();
+        // console.log(comment)
+        res.json(comment) 
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error : "Internal Server Error"})
+    }
+})
+
+
 
 export default router;

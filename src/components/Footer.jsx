@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from "../assets/footerlogo.png";
+import {Link} from "react-router-dom"
 
 const Footer = () => {
   return (
@@ -16,11 +17,11 @@ const Footer = () => {
           <div>
             <h1 className='font-semibold text-xl'>Pages</h1>
             <ul className='text-lg font-light my-2 space-y-1'>
-              <li>Home</li>
-              <li>About Us</li>
-              <li>Crime Reports</li>
-              <li>Crime Responses </li>
-              <li>Contact Us</li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to='/about'>About Us</Link></li>
+              <li><Link to='/crime-response'>Crime Reports</Link></li>
+              <li><Link to='/crime-report'>Crime Responses </Link></li>
+              <li><Link to='/contact'>Contact Us</Link></li>
             </ul>
           </div>
           <div>

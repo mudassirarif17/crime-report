@@ -6,7 +6,6 @@ import axios from 'axios';
 
 
 function MyState(props) {
-    // const name = "Mudassir";
     
     const [user, setUser] = useState([]);
     const [allUser, setAllUser] = useState([]);
@@ -23,6 +22,7 @@ function MyState(props) {
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false); // Added loading state
     const [comment , setComment] = useState([]);
+    const [userscomment , setUsersComment] = useState([]);
     const [cId , setCId] = useState('');
     const [text , setText] = useState('');
 
@@ -34,6 +34,12 @@ function MyState(props) {
     const [highway , setHighway] = useState([]);
     const [bank , setBank] = useState([]);
     const [carsnatch , setCarsnatch] = useState([]);
+
+    const [north , setNorth] = useState([]);
+    const [west , setWest] = useState([]);
+    const [south , setSouth] = useState([]);
+    const [east , setEast] = useState([]);
+    const [central , setCentral] = useState([]);
 
 
     const addPostHandle = async (e) => {
@@ -122,9 +128,20 @@ function MyState(props) {
             let carsn = searchNotes.filter((data)=> data.category === "CAR SNATCHING")
             setCarsnatch(carsn);
 
+            let n = searchNotes.filter((data)=> data.region === "North")
+            setNorth(n);
 
+            let e = searchNotes.filter((data)=> data.region === "East")
+            setEast(e);
 
+            let s = searchNotes.filter((data)=> data.region === "South")
+            setSouth(s);
 
+            let w = searchNotes.filter((data)=> data.region === "West")
+            setWest(w);
+
+            let c = searchNotes.filter((data)=> data.region === "Central")
+            setCentral(c);
 
         } catch (error) {
             console.log(error);
@@ -231,11 +248,27 @@ function MyState(props) {
         }
     }
 
+    const getAllUserComments = async () => {
+        try {
+            const res = await fetch(`http://localhost:5000/api/posts//getallusercomments`, {
+                method: `GET`,
+                headers: {
+                    'Content-Type': "application/json",
+                }
+            });
+            const commentData = await res.json();
+            //console.log(commentData); // Check the response here
+            setUsersComment(commentData);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     
         
 
     return (
-        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText , category , setCategory , region , setRegion , getAllUsers , allUser , setAllUser , gangrape , setGangrape , murder , setMurder , targetkilling , murderrobbery , bombblast , highway , carsnatch , bank}}>
+        <myContext.Provider value={{title , setTitle , desc , setDesc , image , setImage , allNotes , setAllNotes , searchNotes , setSearchNotes , search , setSearch  , addPostHandle , getAllPosts , user , setUser , userData , likeHandler , disLikeHandler , showCommentModal , comment , getAllComments ,  cId , AddComment , text , setText , category , setCategory , region , setRegion , getAllUsers , allUser , setAllUser , gangrape , setGangrape , murder , setMurder , targetkilling , murderrobbery , bombblast , highway , carsnatch , bank , getAllUserComments , userscomment , north , east , west , south , central}}>
             {props.children}
         </myContext.Provider>
     )

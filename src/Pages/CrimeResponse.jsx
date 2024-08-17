@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+
 import Layout from "../Pages/Layout";
 import location from "../assets/location.png";
 
@@ -109,12 +110,6 @@ const CrimeResponse = () => {
                         <div class="grid cols-1 md:grid-cols-2 gap-4 py-10">
                             {
                                 searchNotes.map((data, index) => (
-                                    // <tr key={ index } className="btm mb-3 bg-[#309689] w-[100%] md:w-[96%] h-[6vh] md:h-[9vh] rounded-xl flex items-center cursor-pointer">
-                                    //     <td className='w-[10%] text-center text-lg'>{ index + 1 }</td>
-                                    //     <td className='w-[50%] text-lg'>{ data.title }</td>
-                                    //     <td className='w-[50%] text-lg'>{ data.description.slice(0, 20) } ...</td>
-                                    //     <td onClick={showModal} className='w-[40%] text-lg'>View</td>
-                                    // </tr>
                                     <div className="card w-[97%] cursor-pointer my-0 md:my-4 rounded-lg shadow-md bg-white py-7">
                                         <div className="img flex justify-center">
                                             <img className='px-5 h-[200px]' src={`src/images/${data.image}`} alt="loading" />

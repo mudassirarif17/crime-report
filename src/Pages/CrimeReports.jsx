@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import myContext from '../context/data/myContext';
+
 import Layout from "../Pages/Layout";
 import bookmark from "../assets/bookmark.png";
 import cardLogo from "../assets/crime-card-icon.png";
 import { Pie, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+
 
 ChartJS.register(
   CategoryScale,
@@ -16,17 +19,28 @@ ChartJS.register(
   ArcElement
 );
 const CrimeReports = () => {
+  const context = useContext(myContext);
+  const {allNotes, getAllPosts , getAllUsers , allUser , getAllUserComments , userscomment , north , east , west , south , central} = context;
+
+  useEffect(() => {
+    getAllPosts();
+    getAllUsers();
+    getAllUserComments();
+}, [allNotes]);
+
+
   const pieData = {
-    labels: ['Crime Reports', 'Comments', 'Likes', 'DisLikes'],
+    labels: ['North', 'East', 'South', 'West' , 'Central'],
     datasets: [
       {
         label: 'All Users',
-        data: [99, 150, 200, 50],
+        data: [north.length, east.length , south.length , west.length , central.length],
         backgroundColor: [
           'rgb(75, 192, 192)',
           'rgb(54, 162, 235)',
           'rgb(255, 206, 86)',
-          'rgb(75, 192, 192)',
+          'rgb(75, 19, 192)',
+          'rgb(75, 192, 50)',
         ],
         hoverOffset: 4,
       },
@@ -47,10 +61,10 @@ const CrimeReports = () => {
   };
 
   const lineData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
     datasets: [
       {
-        label: 'User Dataset',
+        label: 'Crime Dataset',
         data: [65, 59, 80, 81, 56, 55, 40],
         fill: false,
         backgroundColor: 'rgb(75, 192, 192)',
@@ -67,7 +81,7 @@ const CrimeReports = () => {
       },
       title: {
         display: true,
-        text: 'User Dataset',
+        text: '5 Years Crime Dataset',
       },
     },
   };
@@ -89,9 +103,10 @@ const CrimeReports = () => {
       </div>
       <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
         <button className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See More</button>
-      </div>
+      </div >
     </div>
   );
+
 
   return (
     <Layout>
@@ -124,19 +139,19 @@ const CrimeReports = () => {
             <div>
               <div className='reporters h-[20vh] md:h-[50vh] flex justify-center flex-col items-center'>
                 <h1 className='text-3xl font-bold'>Reports</h1>
-                <h1 className='text-xl font-semibold'>330 users</h1>
+                <h1 className='text-xl font-semibold'>{allNotes.length} reports</h1>
               </div>
             </div>
             <div>
               <div className='reporters h-[20vh] md:h-[50vh] flex justify-center flex-col items-center'>
               <h1 className='text-3xl font-bold'>Responses</h1>
-              <h1 className='text-xl font-semibold'>15 users</h1>
+              <h1 className='text-xl font-semibold'>{userscomment.length} responses</h1>
               </div>
             </div>
             <div>
               <div className='reporters h-[20vh] md:h-[50vh] flex justify-center flex-col items-center'>
-              <h1 className='text-3xl font-bold'>Online</h1>
-              <h1 className='text-xl font-semibold'>4 users</h1>
+              <h1 className='text-3xl font-bold'>Users</h1>
+              <h1 className='text-xl font-semibold'>{allUser.length} users</h1>
               </div>
             </div>
 
