@@ -79,9 +79,9 @@ function MyState(props) {
                 setCategory('');
                 setRegion('');
                 setImage(null);
-                toast.success("Report Added", {
+                toast.success("Your report has been noted.We will be taking a closer look at your report and take strict action. In case of emergency please contact the police helpline 15 immediately.", {
                     position: "top-right",
-                    autoClose: 1000,
+                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
