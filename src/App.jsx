@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import South from './Pages/South';
 import East from './Pages/East';
 import West from './Pages/West';
+import Central from './Pages/Central';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path='/south' element={<South/>}/>
         <Route path='/east' element={<East/>}/>
         <Route path='/west' element={<West/>}/>
+        <Route path='/central' element={<Central/>}/>
       </Routes>
     </BrowserRouter>
     </MyState>

@@ -9,6 +9,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 import {west as w} from "../cr-23"
 import {south as s} from "../cr-23"
 import {east as e} from "../cr-23"
+import {central as c} from "../cr-23"
 import { Link } from 'react-router-dom';
 
 
@@ -34,7 +35,7 @@ const CrimeReports = () => {
   }, []);
 
   const pieData = {
-    labels: ['North', 'East', 'South', 'West' , 'Central'],
+    labels: ['Malir' , 'Korangi' , 'East', 'South', 'West' , 'Central'],
     datasets: [
       {
         label: 'All Users',
@@ -88,6 +89,13 @@ const CrimeReports = () => {
         backgroundColor: 'rgb(192, 192, 192)',
         borderColor: 'rgb(192, 192, 192)',
       },
+      {
+        label: 'Central',
+        data: [c.filter((data)=> data.Year === 2019).length, c.filter((data)=> data.Year === 2020).length, c.filter((data)=> data.Year === 2021).length, c.filter((data)=> data.Year === 2022).length, c.filter((data)=> data.Year === 2023).length],
+        fill: false,
+        backgroundColor: 'rgb(192, 52, 192)',
+        borderColor: 'rgb(192, 52, 192)',
+      }
     ],
   };
 
@@ -178,6 +186,30 @@ const CrimeReports = () => {
           {/* <CrimeCard /> */ }
           {/* <CrimeCard /> */ }
         </div>
+
+        <div className="crime-cards w-[90vw] mx-auto">
+          <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
+            <div className="card-top w-[96%] mx-auto flex justify-between items-center">
+              <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
+              <img src={ bookmark } alt="Bookmark" />
+            </div>
+            <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
+              <div className="logo">
+                <img src={ cardLogo } alt="Card logo" />
+              </div>
+              <div className="desc">
+                <h1 className='font-semibold text-2xl'>Crime Reports Of Central</h1>
+                <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
+              </div>
+            </div>
+            <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
+              <Link to="/central" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
+            </div>
+          </div>
+          {/* <CrimeCard /> */ }
+          {/* <CrimeCard /> */ }
+        </div>
+
         </div>
 
         <div className="crime-stats bg-[#EBF5F4] py-10">

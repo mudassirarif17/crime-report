@@ -185,7 +185,8 @@ const CrimeResponse = () => {
                                 >
                                     <option>-- Select Region --</option>
                                     <option value="East">East</option>
-                                    <option value="North">North</option>
+                                    <option value="Malir">Malir</option>
+                                    <option value="Korangi">Korangi</option>
                                     <option value="West">West</option>
                                     <option value="South">South</option>
                                     <option value="Central">Central</option>
