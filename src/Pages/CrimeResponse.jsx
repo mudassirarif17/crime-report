@@ -172,7 +172,7 @@ const CrimeResponse = () => {
                         <div className="inputs">
 
                             <div className="inp my-4">
-                                <input value={ title } onChange={ (e) => setTitle(e.target.value) } className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Complaint Title' />
+                                <input required value={ title } onChange={ (e) => setTitle(e.target.value) } className='w-[100%] px-4 py-1 rounded-lg outline-none' type="text" placeholder='Complaint Title' />
                             </div>
 
                             <div className="inp my-4">
@@ -181,6 +181,7 @@ const CrimeResponse = () => {
                                     id="region"
                                     name="region"
                                     onChange={ (e) => setRegion(e.target.value) }
+                                    required
                                 >
                                     <option>-- Select Region --</option>
                                     <option value="East">East</option>
@@ -197,6 +198,7 @@ const CrimeResponse = () => {
                                     id="category"
                                     name="category"
                                     onChange={ (e) => setCategory(e.target.value) }
+                                    required
                                 >
                                     <option>-- Select Category --</option>
                                     <option value="MURDER">MURDER</option>
@@ -213,7 +215,7 @@ const CrimeResponse = () => {
 
                             <div className="inp my-4">
                                 <p className='text-sm mt-3 pl-2'>Report image</p>
-                                <input name="image" onChange={ (e) => setImage(e.target.files[0]) } type="file" className='w-[100%] py-1 px-2 rounded-lg outline-none' />
+                                <input required name="image" onChange={ (e) => setImage(e.target.files[0]) } type="file" className='w-[100%] py-1 px-2 rounded-lg outline-none' />
                             </div>
 
 

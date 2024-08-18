@@ -3,6 +3,7 @@ import Layout from "../Pages/Layout";
 import bookmark from "../assets/bookmark.png";
 import cardLogo from "../assets/crime-card-icon.png";
 import quotes from "../assets/Quotes.png";
+import newhero from "../assets/newhero.png";
 import arrow from "../assets/arrow-right.png";
 import laptopPeople from "../assets/laptop-people.png";
 import myContext from '../context/data/myContext';
@@ -46,11 +47,12 @@ const Home = () => {
   return (
     <Layout>
       <div className="contact">
-        <div className="hero bg-[#03302D] h-[35vh] text-white flex justify-center items-center">
+        <div className="hero hero-title h-[35vh] text-white flex justify-center items-center">
           <h1 className="text-5xl font-semibold">Home</h1>
         </div>
 
-        <div className="after-hero w-[92vw] md:w-[85vw] mx-auto px-4 my-10">
+
+        <div className="after-hero w-[92vw] md:w-[85vw] mx-auto px-4 mt-20">
           <h1 className='font-bold text-xl md:text-5xl'>Recent Crimes Happened</h1>
           <div className="desc flex justify-between my-3">
             <p className="font-light text-sm w-[80%]">Stay informed and vigilant with our comprehensive datab</p>
