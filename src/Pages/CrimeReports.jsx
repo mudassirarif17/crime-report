@@ -6,6 +6,11 @@ import bookmark from "../assets/bookmark.png";
 import cardLogo from "../assets/crime-card-icon.png";
 import { Pie, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import {west as w} from "../cr-23"
+import {south as s} from "../cr-23"
+import {east as e} from "../cr-23"
+import { Link } from 'react-router-dom';
+
 
 ChartJS.register(
   CategoryScale,
@@ -26,7 +31,7 @@ const CrimeReports = () => {
     getAllPosts();
     getAllUsers();
     getAllUserComments();
-  }, [allNotes]);
+  }, []);
 
   const pieData = {
     labels: ['North', 'East', 'South', 'West' , 'Central'],
@@ -60,28 +65,28 @@ const CrimeReports = () => {
   };
 
   const lineData = {
-    labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
+    labels: ['2019', '2020', '2021', '2022', '2023'],
     datasets: [
       {
-        label: 'Robberies',
-        data: [65, 59, 80, 81, 56, 55],
+        label: 'South',
+        data: [s.filter((data)=> data.Year === 2019).length, s.filter((data)=> data.Year === 2020).length, s.filter((data)=> data.Year === 2021).length, s.filter((data)=> data.Year === 2022).length, s.filter((data)=> data.Year === 2023).length],
         fill: false,
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgb(255, 99, 132)',
       },
       {
-        label: 'Snatchings',
-        data: [28, 48, 40, 19, 86, 27],
+        label: 'East',
+        data: [e.filter((data)=> data.Year === 2019).length, e.filter((data)=> data.Year === 2020).length, e.filter((data)=> data.Year === 2021).length, e.filter((data)=> data.Year === 2022).length, e.filter((data)=> data.Year === 2023).length],
         fill: false,
         backgroundColor: 'rgb(54, 162, 235)',
         borderColor: 'rgb(54, 162, 235)',
       },
       {
-        label: 'Bomb Blasts',
-        data: [18, 33, 22, 45, 63, 77],
+        label: 'West',
+        data: [w.filter((data)=> data.Year === 2019).length, w.filter((data)=> data.Year === 2020).length, w.filter((data)=> data.Year === 2021).length, w.filter((data)=> data.Year === 2022).length, w.filter((data)=> data.Year === 2023).length],
         fill: false,
-        backgroundColor: 'rgb(75, 192, 192)',
-        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgb(192, 192, 192)',
+        borderColor: 'rgb(192, 192, 192)',
       },
     ],
   };
@@ -99,27 +104,6 @@ const CrimeReports = () => {
     },
   };
 
-  const CrimeCard = () => (
-    <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
-      <div className="card-top w-[96%] mx-auto flex justify-between items-center">
-        <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
-        <img src={bookmark} alt="Bookmark" />
-      </div>
-      <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
-        <div className="logo">
-          <img src={cardLogo} alt="Card logo" />
-        </div>
-        <div className="desc">
-          <h1 className='font-semibold text-2xl'>Crime Reports Of 2023</h1>
-          <p className='font-light text-md'>Karachi East, West, South, North</p>
-        </div>
-      </div>
-      <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
-        <button className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See More</button>
-      </div >
-    </div>
-  );
-
   return (
     <Layout>
       <div className="crime-reports">
@@ -128,8 +112,72 @@ const CrimeReports = () => {
         </div>
 
         <div className="crime-cards w-[90vw] mx-auto my-5">
-          <CrimeCard />
-          <CrimeCard />
+        <div className="crime-cards w-[90vw] mx-auto">
+          <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
+            <div className="card-top w-[96%] mx-auto flex justify-between items-center">
+              <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
+              <img src={ bookmark } alt="Bookmark" />
+            </div>
+            <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
+              <div className="logo">
+                <img src={ cardLogo } alt="Card logo" />
+              </div>
+              <div className="desc">
+                <h1 className='font-semibold text-2xl'>Crime Reports Of South</h1>
+                <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
+              </div>
+            </div>
+            <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
+              <Link to="/south" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
+            </div>
+          </div>
+          {/* <CrimeCard /> */ }
+          {/* <CrimeCard /> */ }
+        </div>
+
+        <div className="crime-cards w-[90vw] mx-auto">
+          <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
+            <div className="card-top w-[96%] mx-auto flex justify-between items-center">
+              <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
+              <img src={ bookmark } alt="Bookmark" />
+            </div>
+            <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
+              <div className="logo">
+                <img src={ cardLogo } alt="Card logo" />
+              </div>
+              <div className="desc">
+                <h1 className='font-semibold text-2xl'>Crime Reports Of East</h1>
+                <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
+              </div>
+            </div>
+            <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
+              <Link to="/east" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="crime-cards w-[90vw] mx-auto">
+          <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
+            <div className="card-top w-[96%] mx-auto flex justify-between items-center">
+              <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
+              <img src={ bookmark } alt="Bookmark" />
+            </div>
+            <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
+              <div className="logo">
+                <img src={ cardLogo } alt="Card logo" />
+              </div>
+              <div className="desc">
+                <h1 className='font-semibold text-2xl'>Crime Reports Of West</h1>
+                <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
+              </div>
+            </div>
+            <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
+              <Link to="/west" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
+            </div>
+          </div>
+          {/* <CrimeCard /> */ }
+          {/* <CrimeCard /> */ }
+        </div>
         </div>
 
         <div className="crime-stats bg-[#EBF5F4] py-10">

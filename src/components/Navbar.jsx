@@ -36,7 +36,7 @@ const Navbar = () => {
     }
   }
 
-  console.log("my user ", user)
+  // console.log("my user ", user)
   return (
     <div className='bg-[#03302D] h-[9vh] md:h-[12vh] sticky top-0'>
 

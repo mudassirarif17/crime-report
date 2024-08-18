@@ -105,7 +105,7 @@ function MyState(props) {
                 }
             });
             const notesData = await res.json();
-            console.log(notesData); // Check the response here
+            // console.log(notesData); // Check the response here
             setAllNotes(notesData);
             setSearchNotes(notesData);
 

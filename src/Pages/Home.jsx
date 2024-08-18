@@ -1,4 +1,4 @@
-import React, { useContext , useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Layout from "../Pages/Layout";
 import bookmark from "../assets/bookmark.png";
 import cardLogo from "../assets/crime-card-icon.png";
@@ -14,12 +14,12 @@ import { formatDistanceToNow } from 'date-fns';
 
 const Home = () => {
   const context = useContext(myContext);
-  const {allNotes, getAllPosts, gangrape , murder , targetkilling , murderrobbery , bombblast , highway , carsnatch , bank , latestPost , crimeSouth , southCrime} = context;
+  const { allNotes, getAllPosts, gangrape, murder, targetkilling, murderrobbery, bombblast, highway, carsnatch, bank, latestPost, crimeSouth, southCrime } = context;
 
   useEffect(() => {
     getAllPosts();
     crimeSouth();
-}, [allNotes]);
+  }, [allNotes]);
 
   const CrimeCard = () => (
     <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
@@ -59,70 +59,70 @@ const Home = () => {
         </div>
 
         <div className="crime-cards w-[90vw] mx-auto">
-        <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
-      <div className="card-top w-[96%] mx-auto flex justify-between items-center">
-        <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
-        <img src={ bookmark } alt="Bookmark" />
-      </div>
-      <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
-        <div className="logo">
-          <img src={ cardLogo } alt="Card logo" />
-        </div>
-        <div className="desc">
-          <h1 className='font-semibold text-2xl'>Crime Reports Of South</h1>
-          <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
-        </div>
-      </div>
-      <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
-        <Link to="/south" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
-      </div>
-    </div>
-          {/* <CrimeCard /> */}
-          {/* <CrimeCard /> */}
-        </div>
-
-        <div className="crime-cards w-[90vw] mx-auto">
-        <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
-      <div className="card-top w-[96%] mx-auto flex justify-between items-center">
-        <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
-        <img src={ bookmark } alt="Bookmark" />
-      </div>
-      <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
-        <div className="logo">
-          <img src={ cardLogo } alt="Card logo" />
-        </div>
-        <div className="desc">
-          <h1 className='font-semibold text-2xl'>Crime Reports Of East</h1>
-          <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
-        </div>
-      </div>
-      <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
-        <Link to="/east" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
-      </div>
-    </div>
+          <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
+            <div className="card-top w-[96%] mx-auto flex justify-between items-center">
+              <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
+              <img src={ bookmark } alt="Bookmark" />
+            </div>
+            <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
+              <div className="logo">
+                <img src={ cardLogo } alt="Card logo" />
+              </div>
+              <div className="desc">
+                <h1 className='font-semibold text-2xl'>Crime Reports Of South</h1>
+                <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
+              </div>
+            </div>
+            <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
+              <Link to="/south" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
+            </div>
+          </div>
+          {/* <CrimeCard /> */ }
+          {/* <CrimeCard /> */ }
         </div>
 
         <div className="crime-cards w-[90vw] mx-auto">
-        <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
-      <div className="card-top w-[96%] mx-auto flex justify-between items-center">
-        <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
-        <img src={ bookmark } alt="Bookmark" />
-      </div>
-      <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
-        <div className="logo">
-          <img src={ cardLogo } alt="Card logo" />
+          <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
+            <div className="card-top w-[96%] mx-auto flex justify-between items-center">
+              <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
+              <img src={ bookmark } alt="Bookmark" />
+            </div>
+            <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
+              <div className="logo">
+                <img src={ cardLogo } alt="Card logo" />
+              </div>
+              <div className="desc">
+                <h1 className='font-semibold text-2xl'>Crime Reports Of East</h1>
+                <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
+              </div>
+            </div>
+            <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
+              <Link to="/east" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
+            </div>
+          </div>
         </div>
-        <div className="desc">
-          <h1 className='font-semibold text-2xl'>Crime Reports Of West</h1>
-          <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
-        </div>
-      </div>
-      <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
-        <Link to="/west" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
-      </div>
-    </div>
-          {/* <CrimeCard /> */}
-          {/* <CrimeCard /> */}
+
+        <div className="crime-cards w-[90vw] mx-auto">
+          <div className="card w-[85vw] mx-auto bg-white shadow-xl rounded-2xl py-4 mb-10">
+            <div className="card-top w-[96%] mx-auto flex justify-between items-center">
+              <button className='bg-[#d6f5f1] font-light rounded-lg text-[#309689] px-2 py-1'>Updated</button>
+              <img src={ bookmark } alt="Bookmark" />
+            </div>
+            <div className="card-mid w-[96%] my-5 mx-auto flex items-center space-x-4">
+              <div className="logo">
+                <img src={ cardLogo } alt="Card logo" />
+              </div>
+              <div className="desc">
+                <h1 className='font-semibold text-2xl'>Crime Reports Of West</h1>
+                <p className='font-light text-md'>2023 , 2022 , 2021 , 2020 , 2019</p>
+              </div>
+            </div>
+            <div className="card-bottom w-[96%] flex justify-end my-5 mx-auto">
+              <Link to="/west" className='bg-[#309689] text-white px-3 py-1 font-semibold rounded-lg'>See All</Link>
+            </div>
+          </div>
+          {/* <CrimeCard /> */ }
+          {/* <CrimeCard /> */ }
         </div>
 
         <div className="crime-category bg-[#dffaf6]">
@@ -132,42 +132,42 @@ const Home = () => {
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>MURDER</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{murder.length}</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{ murder.length }</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>TARGETED KILLING</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{targetkilling.length}</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{ targetkilling.length }</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>MURDER DURING ROBBERY</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{murderrobbery.length}</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{ murderrobbery.length }</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>BOMB BLAST</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{bombblast.length}</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{ bombblast.length }</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>HIGH WAY ROBBERY</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{highway.length}</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{ highway.length }</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>BANK ROBBERY</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{bank.length}</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{ bank.length }</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>CAR SNATCHING</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{carsnatch.length}</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{ carsnatch.length }</p>
             </div>
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>GANG RAPE</h1>
-              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{gangrape.length}</p>
+              <p className='text-center my-4 bg-[#bcf3ec] text-sm px-4 text-[#309689] font-bold rounded-md py-1'>{ gangrape.length }</p>
             </div>
 
           </div>
@@ -255,19 +255,19 @@ const Home = () => {
           </div>
           <div className="btm my-4 flex flex-col md:flex-row justify-between">
             {
-              latestPost.map((data , index)=>(
+              latestPost.map((data, index) => (
                 <div className="btm-left w-[100%] md:w-[48%] cursor-pointer">
-              <img className='w-[40%] h-[40%]' src={`src/images/${data.image}`} alt="" />
-              <div className="desc py-2 px-2">
-                <p className="date text-sm font-light">{formatDistanceToNow(new Date(data.date), { addSuffix: true })}</p>
-                <h1 className='font-bold text-lg md:text-2xl'>{data.title}</h1>
-                <p>{data.description} ...</p>
-                <div className='flex gap-2 items-center my-2'>
-                  <Link to='/crime-response' className='text-[#309689] text-sm md:text-md font-semibold'>Read More</Link>
-                  <img src={ arrow } alt="" />
+                  <img className='w-[40%] h-[40%]' src={ `src/images/${data.image}` } alt="" />
+                  <div className="desc py-2 px-2">
+                    <p className="date text-sm font-light">{ formatDistanceToNow(new Date(data.date), { addSuffix: true }) }</p>
+                    <h1 className='font-bold text-lg md:text-2xl'>{ data.title }</h1>
+                    <p>{ data.description } ...</p>
+                    <div className='flex gap-2 items-center my-2'>
+                      <Link to='/crime-response' className='text-[#309689] text-sm md:text-md font-semibold'>Read More</Link>
+                      <img src={ arrow } alt="" />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
               ))
             }
           </div>
