@@ -7,7 +7,6 @@ import cardLogo from "../assets/crime-card-icon.png";
 import { Pie, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -18,6 +17,7 @@ ChartJS.register(
   Legend,
   ArcElement
 );
+
 const CrimeReports = () => {
   const context = useContext(myContext);
   const {allNotes, getAllPosts , getAllUsers , allUser , getAllUserComments , userscomment , north , east , west , south , central} = context;
@@ -26,8 +26,7 @@ const CrimeReports = () => {
     getAllPosts();
     getAllUsers();
     getAllUserComments();
-}, [allNotes]);
-
+  }, [allNotes]);
 
   const pieData = {
     labels: ['North', 'East', 'South', 'West' , 'Central'],
@@ -64,11 +63,25 @@ const CrimeReports = () => {
     labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
     datasets: [
       {
-        label: 'Crime Dataset',
-        data: [65, 59, 80, 81, 56, 55, 40],
+        label: 'Robberies',
+        data: [65, 59, 80, 81, 56, 55],
+        fill: false,
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+      },
+      {
+        label: 'Snatchings',
+        data: [28, 48, 40, 19, 86, 27],
+        fill: false,
+        backgroundColor: 'rgb(54, 162, 235)',
+        borderColor: 'rgb(54, 162, 235)',
+      },
+      {
+        label: 'Bomb Blasts',
+        data: [18, 33, 22, 45, 63, 77],
         fill: false,
         backgroundColor: 'rgb(75, 192, 192)',
-        borderColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgb(75, 192, 192)',
       },
     ],
   };
@@ -107,7 +120,6 @@ const CrimeReports = () => {
     </div>
   );
 
-
   return (
     <Layout>
       <div className="crime-reports">
@@ -133,27 +145,27 @@ const CrimeReports = () => {
           <div className="stats-bottom w-[90vw] mx-auto">
             <h1 className='text-center font-bold text-2xl'>Active Percentage</h1>
             <div class="grid cols-1 md:grid-cols-4 gap-4 my-4" >
-            <div>
-              <Pie data={pieData} options={pieOptions} />
-            </div>
-            <div>
-              <div className='reporters h-[20vh] md:h-[50vh] flex justify-center flex-col items-center'>
-                <h1 className='text-3xl font-bold'>Reports</h1>
-                <h1 className='text-xl font-semibold'>{allNotes.length} reports</h1>
+              <div>
+                <Pie data={pieData} options={pieOptions} />
               </div>
-            </div>
-            <div>
-              <div className='reporters h-[20vh] md:h-[50vh] flex justify-center flex-col items-center'>
-              <h1 className='text-3xl font-bold'>Responses</h1>
-              <h1 className='text-xl font-semibold'>{userscomment.length} responses</h1>
+              <div>
+                <div className='reporters h-[20vh] md:h-[50vh] flex justify-center flex-col items-center'>
+                  <h1 className='text-3xl font-bold'>Reports</h1>
+                  <h1 className='text-xl font-semibold'>{allNotes.length} reports</h1>
+                </div>
               </div>
-            </div>
-            <div>
-              <div className='reporters h-[20vh] md:h-[50vh] flex justify-center flex-col items-center'>
-              <h1 className='text-3xl font-bold'>Users</h1>
-              <h1 className='text-xl font-semibold'>{allUser.length} users</h1>
+              <div>
+                <div className='reporters h-[20vh] md:h-[50vh] flex justify-center flex-col items-center'>
+                  <h1 className='text-3xl font-bold'>Responses</h1>
+                  <h1 className='text-xl font-semibold'>{userscomment.length} responses</h1>
+                </div>
               </div>
-            </div>
+              <div>
+                <div className='reporters h-[20vh] md:h-[50vh] flex justify-center flex-col items-center'>
+                  <h1 className='text-3xl font-bold'>Users</h1>
+                  <h1 className='text-xl font-semibold'>{allUser.length} users</h1>
+                </div>
+              </div>
 
             </div>
           </div>
