@@ -246,7 +246,7 @@ function MyState(props) {
     const getAllUsers = async () => {
         setLoading(true);
         try {
-            const res = await fetch("http://localhost:5000/api/auth/getalluser", {
+            const res = await fetch("http://localhost:5000/api/auth/getuser", {
                 method: `GET`,
                 headers: {
                     'Content-Type': "application/json", // Corrected typo here

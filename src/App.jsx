@@ -12,6 +12,7 @@ import South from './Pages/South';
 import East from './Pages/East';
 import West from './Pages/West';
 import Central from './Pages/Central';
+import Verify from './Pages/Verify';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path='/east' element={<East/>}/>
         <Route path='/west' element={<West/>}/>
         <Route path='/central' element={<Central/>}/>
+        <Route path='/verify' element={<Verify/>}/>
       </Routes>
     </BrowserRouter>
     </MyState>

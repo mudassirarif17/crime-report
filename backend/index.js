@@ -14,6 +14,8 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(cors())
+// app.use(cors({ origin: 'http://127.0.0.1:5000' }));
+
 
 // Define Routes
 app.use('/api/auth', authRoutes);

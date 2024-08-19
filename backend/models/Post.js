@@ -16,7 +16,8 @@ const PostSchema = new mongoose.Schema({
     },
     image : {
         type : String,
-        required : true
+        null : true,
+        default : "1724097132294cuboid.png"
     },
     region : {
         type: String,
