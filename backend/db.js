@@ -2,7 +2,11 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/crimereport', {
+        // await mongoose.connect('mongodb://localhost:27017/crimereport', {
+        //     useNewUrlParser: true,
+        //     useUnifiedTopology: true,
+        // });
+        await mongoose.connect('mongodb+srv://mudassirinoxent:qSxYRgGtpbBuYYkd@cluster0.2rtvxcg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });

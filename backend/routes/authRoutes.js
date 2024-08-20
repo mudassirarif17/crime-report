@@ -14,7 +14,7 @@ const router = express.Router();
 // Multer Code 
 const storage = multer.diskStorage({
     destination : function(req , file , cb){
-        cb(null , "../src/images");
+        cb(null , "../frontend/src/images");
     },
     filename : function(req , file , cb){
         const uniqueSuffix = Date.now();
@@ -94,13 +94,13 @@ router.post('/register', upload.single("image"), async (req, res) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: "mudassirinoxent@gmail.com",
-                pass: "varx trax kmxz iyer",
+                user: "crimeportal22@gmail.com",
+                pass: "hxib xovz muvt opzk",
             },
         });
     
         const mailOptions = {
-            from: "mudassirinoxent@gmail.com",
+            from: "crimeportal22@gmail.com",
             to : email,
             subject : 'Verify Your Email',
             text : `Your OTP is ${otp}`,
@@ -147,18 +147,6 @@ router.post('/verify-otp', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Login Route
@@ -210,8 +198,6 @@ router.post('/verify-otp', async (req, res) => {
 //         return res.status(500).send("Internal Server Error");
 //     }
 // });
-
-
 
 // router.post('/login', async (req, res) => {
 //     const { email, password } = req.body;
@@ -284,17 +270,6 @@ router.post('/login', async (req, res) => {
     }
 });
 
-
-
-
-
-
-
-
-
-
-
-
 // Route 3 get a user detail
 router.get('/getuser' , authMiddleware ,async (req , res)=>{
     try {
@@ -319,9 +294,6 @@ router.get('/getalluser',async (req , res)=>{
         res.status(500).json({error : "Internal Server Error"});
     }
 })
-
-
-
 
 
 export default router;

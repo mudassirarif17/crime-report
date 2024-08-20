@@ -6,7 +6,7 @@ import authMiddleware from "../middleware/authMiddleware.js";
 
 const storage = multer.diskStorage({
     destination : function(req , file , cb){
-        cb(null , "../src/images");
+        cb(null , "../frontend/src/images");
     },
     filename : function(req , file , cb){
         const uniqueSuffix = Date.now();
