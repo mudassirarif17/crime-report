@@ -57,7 +57,7 @@ function MyState(props) {
 
         try {
             e.preventDefault();
-            const res = await axios.post(`http://localhost:5000/api/posts/add_post`, formData, {
+            const res = await axios.post(`crime-report-three.vercel.app/api/posts/add_post`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     'auth-token': localStorage.getItem("token")
@@ -97,7 +97,7 @@ function MyState(props) {
     const getAllPosts = async () => {
         setLoading(true);
         try {
-            const res = await fetch("http://localhost:5000/api/posts/getallposts", {
+            const res = await fetch("crime-report-three.vercel.app/api/posts/getallposts", {
                 method: `GET`,
                 headers: {
                     'Content-Type': "application/json", // Corrected typo here
@@ -163,7 +163,7 @@ function MyState(props) {
     }
 
     const userData = async () => {
-        const res = await fetch(`http://localhost:5000/api/auth/getuser`, {
+        const res = await fetch(`crime-report-three.vercel.app/api/auth/getuser`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -177,7 +177,7 @@ function MyState(props) {
     }
 
     const likeHandler = async (id) => {
-        const res = await fetch(`http://localhost:5000/api/posts/like/${id}`, {
+        const res = await fetch(`crime-report-three.vercel.app/api/posts/like/${id}`, {
             'method': "PUT",
             headers: {
                 'Content-Type': "application/json",
@@ -190,7 +190,7 @@ function MyState(props) {
     }
 
     const disLikeHandler = async (id) => {
-        const res = await fetch(`http://localhost:5000/api/posts/dislike/${id}`, {
+        const res = await fetch(`crime-report-three.vercel.app/api/posts/dislike/${id}`, {
             'method': "PUT",
             headers: {
                 'Content-Type': "application/json",
@@ -214,7 +214,7 @@ function MyState(props) {
 
     const getAllComments = async (id) => {
         try {
-            const res = await fetch(`http://localhost:5000/api/posts/getallcomments/${id}`, {
+            const res = await fetch(`crime-report-three.vercel.app/api/posts/getallcomments/${id}`, {
                 method: `GET`,
                 headers: {
                     'Content-Type': "application/json",
@@ -229,7 +229,7 @@ function MyState(props) {
     }
 
     const AddComment = async (id) => {
-        const res = await fetch(`http://localhost:5000/api/posts/${id}/comment`, {
+        const res = await fetch(`crime-report-three.vercel.app/api/posts/${id}/comment`, {
             'method': "POST",
             headers: {
                 'Content-Type': "application/json",
@@ -246,7 +246,7 @@ function MyState(props) {
     const getAllUsers = async () => {
         setLoading(true);
         try {
-            const res = await fetch("http://localhost:5000/api/auth/getuser", {
+            const res = await fetch("crime-report-three.vercel.app/api/auth/getuser", {
                 method: `GET`,
                 headers: {
                     'Content-Type': "application/json", // Corrected typo here
@@ -262,7 +262,7 @@ function MyState(props) {
 
     const getAllUserComments = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/posts//getallusercomments`, {
+            const res = await fetch(`crime-report-three.vercel.app/api/posts//getallusercomments`, {
                 method: `GET`,
                 headers: {
                     'Content-Type': "application/json",
