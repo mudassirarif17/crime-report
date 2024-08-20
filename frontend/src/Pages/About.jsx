@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from "../Pages/Layout";
-import firstBg from "../assets/firstBg.png";
+import firstBg from "../assets/firstbg.png";
 import secondBg from "../assets/secondBg.png";
 import file from "../assets/file.png";
 import bcase from "../assets/bcase (2).png";
