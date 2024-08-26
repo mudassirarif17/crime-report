@@ -26,7 +26,7 @@ ChartJS.register(
 
 const CrimeReports = () => {
   const context = useContext(myContext);
-  const {allNotes, getAllPosts , getAllUsers , allUser , getAllUserComments , userscomment , north , east , west , south , central} = context;
+  const {allNotes, getAllPosts , getAllUsers , allUser , getAllUserComments , userscomment , malir , korangi , east , west , south , central} = context;
 
   useEffect(() => {
     getAllPosts();
@@ -35,17 +35,18 @@ const CrimeReports = () => {
   }, []);
 
   const pieData = {
-    labels: ['Malir', 'East', 'South', 'West' , 'Central'],
+    labels: ['Malir', 'Korangi' , 'East', 'South', 'West' , 'Central'],
     datasets: [
       {
         label: 'All Users',
-        data: [north.length, east.length , south.length , west.length , central.length],
+        data: [malir.length, korangi.length ,  east.length , south.length , west.length , central.length],
         backgroundColor: [
           'rgb(75, 192, 192)',
+          'rgb(75, 20, 192)',
           'rgb(54, 162, 235)',
           'rgb(255, 206, 86)',
-          'rgb(75, 19, 192)',
-          'rgb(75, 192, 50)',
+          'rgb(200, 200, 192)',
+          'rgb(200, 0, 200)',
         ],
         hoverOffset: 4,
       },

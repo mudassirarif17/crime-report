@@ -117,7 +117,7 @@ const CrimeResponse = () => {
                         <div className="grid cols-1 md:grid-cols-2 gap-4 py-10">
                             {
                                 searchNotes.map((data, index) => (
-                                    <div className="card w-[97%] cursor-pointer my-0 md:my-4 rounded-lg shadow-md bg-white py-7">
+                                    <div key={index} className="card w-[97%] cursor-pointer my-0 md:my-4 rounded-lg shadow-md bg-white py-7">
                                         <div className="img flex justify-center">
                                             <img className='px-5 h-[200px]' src={ `src/images/${data.image}` } alt="loading" />
                                         </div>
@@ -254,7 +254,7 @@ const CrimeResponse = () => {
                     <ul>
                         {
                             comment.map((data, index) => (
-                                <li className='flex gap-2 items-center my-3'>
+                                <li key={index} className='flex gap-2 items-center my-3'>
                                     <img src={ `src/images/${data.user.image}` } className="left bg-gray-200 w-[50px] h-[50px] rounded-full" />
                                     <div className="right ">
                                         <h1 className='text-md font-bold'>{ data.user.username }</h1>

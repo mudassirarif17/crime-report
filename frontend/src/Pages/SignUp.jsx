@@ -13,6 +13,7 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [image , setImage] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -23,11 +24,12 @@ const SignUp = () => {
         formdata.append('password' , password);
         formdata.append('image' , image);
         try {
+          setLoading(true);
           e.preventDefault();
           const res = await axios.post(`http://localhost:5000/api/auth/register` , formdata , {
             headers : {"Content-Type" : "multipart/form-data"}
           });
-          console.log(res)
+          // console.log(res)
           if(res.status == 200){
             toast.success("Email Sent", {
               position: "top-right",
@@ -44,6 +46,7 @@ const SignUp = () => {
             setImage(null);
             setTimeout(()=>{
               navigate('/verify');
+              setLoading(false);
             },1000)
           }else{
             toast.error("Some Error", {
@@ -55,6 +58,7 @@ const SignUp = () => {
               draggable: true,
               progress: undefined,
             });
+            setLoading(false);
           }
         } catch (error) {
           console.log("Error" , error);
@@ -102,7 +106,7 @@ const SignUp = () => {
                                 <p className='text-sm mt-3'>Password</p>
                             </div>
                             <div className='my-3 ml-3'>
-                                <button onClick={SignUpHandle} className='bg-[#309689] text-white w-[95%] md:w-[73%] py-2 rounded-lg text-lg font-semibold'>Register</button>
+                                <button onClick={SignUpHandle} className='bg-[#309689] text-white w-[95%] md:w-[73%] py-2 rounded-lg text-lg font-semibold'>{loading ? "Please Wait ... " : "Register"}</button>
                             </div>
                         </div>
                     </div>

@@ -49,7 +49,7 @@ const Central = () => {
       <tbody>
         {
           central.map((data , index)=>(
-            <tr className="hover:bg-gray-50">
+            <tr key={index} className="hover:bg-gray-50">
           <td className="py-3 px-4 border-b text-center border-gray-200 text-sm text-gray-700">
             {data['BANK ROBBERY']}
           </td>

@@ -280,7 +280,7 @@ const Home = () => {
           <div className="btm my-4 flex flex-col md:flex-row justify-between">
             {
               latestPost.map((data, index) => (
-                <div className="btm-left w-[100%] md:w-[48%] cursor-pointer">
+                <div key={index} className="btm-left w-[100%] md:w-[48%] cursor-pointer">
                   <img className='w-[40%] h-[40%]' src={ `src/images/${data.image}` } alt="" />
                   <div className="desc py-2 px-2">
                     <p className="date text-sm font-light">{ formatDistanceToNow(new Date(data.date), { addSuffix: true }) }</p>

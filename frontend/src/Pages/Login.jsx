@@ -6,11 +6,14 @@ import { useNavigate } from 'react-router';
 import {Link} from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import spinner from "../assets/loader.gif";
 
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -18,6 +21,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const res = await fetch(`http://localhost:5000/api/auth/login`, {
         method: "POST",
         headers: {
@@ -52,7 +56,7 @@ const Login = () => {
         localStorage.setItem('token', loginData.token);
         setTimeout(() => {
           navigate('/');
-        }, 3000);
+        }, 1500);
       }
 
     } catch (error) {
@@ -70,6 +74,7 @@ const Login = () => {
 
     setEmail("");
     setPassword("");
+    setLoading(false);
 
 
   }
@@ -106,7 +111,7 @@ const Login = () => {
                 <input value={ password } onChange={ (e) => setPassword(e.target.value) } placeholder='Password' type="password" className='w-[95%] md:w-[73%] py-1 px-2 rounded-md border-2 border-[#309689] outline-none' />
               </div>
               <div className='my-8 ml-3'>
-                <button onClick={ loginHandle } className='bg-[#309689] text-white w-[95%] md:w-[73%] py-2 rounded-lg text-lg font-semibold'>Login</button>
+                <button onClick={ loginHandle } className='bg-[#309689] text-white w-[95%] md:w-[73%] py-2 rounded-lg text-lg font-semibold'>{loading ? (`Please Wait ... `) : "Login"}</button>
               </div>
 
               <div className='my-8'>

@@ -9,7 +9,7 @@ function MyState(props) {
 
     const [user, setUser] = useState([]);
     const [allUser, setAllUser] = useState([]);
-
+    
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
     const [image, setImage] = useState('');
@@ -20,7 +20,6 @@ function MyState(props) {
     const [allNotes, setAllNotes] = useState([]);
     const [searchNotes, setSearchNotes] = useState([]);
     const [search, setSearch] = useState("");
-    const [loading, setLoading] = useState(false); // Added loading state
     const [comment, setComment] = useState([]);
     const [userscomment, setUsersComment] = useState([]);
     const [cId, setCId] = useState('');
@@ -35,7 +34,8 @@ function MyState(props) {
     const [bank, setBank] = useState([]);
     const [carsnatch, setCarsnatch] = useState([]);
 
-    const [north, setNorth] = useState([]);
+    const [malir, setMalir] = useState([]);
+    const [korangi, setkorangi] = useState([]);
     const [west, setWest] = useState([]);
     const [south, setSouth] = useState([]);
     const [east, setEast] = useState([]);
@@ -91,7 +91,6 @@ function MyState(props) {
     }
 
     const getAllPosts = async () => {
-        setLoading(true);
         try {
             const res = await fetch("http://localhost:5000/api/posts/getallposts", {
                 method: `GET`,
@@ -129,8 +128,11 @@ function MyState(props) {
             let carsn = searchNotes.filter((data) => data.category === "CAR SNATCHING")
             setCarsnatch(carsn);
 
-            let n = searchNotes.filter((data) => data.region === "North")
-            setNorth(n);
+            let m = searchNotes.filter((data) => data.region === "Malir")
+            setMalir(m);
+
+            let k = searchNotes.filter((data) => data.region === "Korangi")
+            setkorangi(k);
 
             let e = searchNotes.filter((data) => data.region === "East")
             setEast(e);
@@ -153,8 +155,6 @@ function MyState(props) {
 
         } catch (error) {
             console.log(error);
-        } finally {
-            setLoading(false);
         }
     }
 
@@ -242,7 +242,6 @@ function MyState(props) {
     }
 
     const getAllUsers = async () => {
-        setLoading(true);
         try {
             const res = await fetch("http://localhost:5000/api/auth/getalluser", {
                 method: `GET`,
@@ -275,7 +274,7 @@ function MyState(props) {
     }
 
     return (
-        <myContext.Provider value={ { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts, user, setUser, userData, likeHandler, disLikeHandler, showCommentModal, comment, getAllComments, cId, AddComment, text, setText, category, setCategory, region, setRegion, getAllUsers, allUser, setAllUser, gangrape, setGangrape, murder, setMurder, targetkilling, murderrobbery, bombblast, highway, carsnatch, bank, getAllUserComments, userscomment, north, east, west, south, central, latestPost } }>
+        <myContext.Provider value={ { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts, user, setUser, userData, likeHandler, disLikeHandler, showCommentModal, comment, getAllComments, cId, AddComment, text, setText, category, setCategory, region, setRegion, getAllUsers, allUser, setAllUser, gangrape, setGangrape, murder, setMurder, targetkilling, murderrobbery, bombblast, highway, carsnatch, bank, getAllUserComments, userscomment, malir , korangi , east, west, south, central, latestPost } }>
             { props.children }
         </myContext.Provider>
     )

@@ -23,7 +23,7 @@ const Verify = () => {
           const res = await axios.post(`http://localhost:5000/api/auth/verify-otp` , formdata , {
             headers : {"Content-Type" : "application/json"}
           });
-          console.log(res)
+          // console.log(res)
           if(res.status == 200){
             toast.success("OTP successfully verified", {
               position: "top-right",
