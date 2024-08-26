@@ -54,7 +54,7 @@ const CrimeResponse = () => {
                                     {
                                         localStorage.getItem('token') ?
                                             <div className='flex flex-col items-center justify-center my-5'>
-                                                <img class='w-[60px] h-[60px] rounded-full' src={ `src/images/${user.image}` } alt="" />
+                                                <img className='w-[60px] h-[60px] rounded-full' src={ `src/images/${user.image}` } alt="" />
                                                 <h1 className='font-bold'>Hi { user.username }</h1>
                                                 <h1 className='font-semibold'>{ user.email }</h1>
                                             </div> :
@@ -114,7 +114,7 @@ const CrimeResponse = () => {
 
                 <div className="crime-response-btm flex flex-col md:flex-row w-[90vw] mx-auto my-10 ">
                     <div className="crime-response-left w-[100%] md:w-[65%] mb-10">
-                        <div class="grid cols-1 md:grid-cols-2 gap-4 py-10">
+                        <div className="grid cols-1 md:grid-cols-2 gap-4 py-10">
                             {
                                 searchNotes.map((data, index) => (
                                     <div className="card w-[97%] cursor-pointer my-0 md:my-4 rounded-lg shadow-md bg-white py-7">
@@ -275,7 +275,7 @@ const CrimeResponse = () => {
                         {
                             localStorage.getItem("token") ?
                                 <button onClick={ () => AddComment(cId) } className='bg-[#309689] text-white text-xl px-6 py-2 font-semibold rounded-lg'>Post</button>
-                                : <button class="bg-gray-300 px-4 py-2 rounded-md cursor-not-allowed opacity-50" disabled>
+                                : <button className="bg-gray-300 px-4 py-2 rounded-md cursor-not-allowed opacity-50" disabled>
                                     Post
                                 </button>
                         }

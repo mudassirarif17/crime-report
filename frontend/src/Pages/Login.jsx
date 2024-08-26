@@ -27,7 +27,7 @@ const Login = () => {
       });
 
       const loginData = await res.json();
-      console.log(loginData);
+      // console.log(loginData);
 
       if (!res.ok) { // Check for HTTP errors
         toast.error(loginData.msg || "Invalid Credential", {

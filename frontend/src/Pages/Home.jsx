@@ -15,11 +15,10 @@ import { formatDistanceToNow } from 'date-fns';
 
 const Home = () => {
   const context = useContext(myContext);
-  const { allNotes, getAllPosts, gangrape, murder, targetkilling, murderrobbery, bombblast, highway, carsnatch, bank, latestPost, crimeSouth, southCrime } = context;
+  const { allNotes, getAllPosts, gangrape, murder, targetkilling, murderrobbery, bombblast, highway, carsnatch, bank, latestPost} = context;
 
   useEffect(() => {
     getAllPosts();
-    crimeSouth();
   }, [allNotes]);
 
   const CrimeCard = () => (
@@ -153,7 +152,7 @@ const Home = () => {
         <div className="crime-category bg-[#dffaf6]">
           <h1 className='text-center font-bold text-4xl py-5'>Browse by Crime Category</h1>
           <p className='text-center font-light'>Explore Crime Types and Patterns</p>
-          <div class="grid w-[85%] mx-auto cols-1 md:grid-cols-4 gap-4 py-10">
+          <div className="grid w-[85%] mx-auto cols-1 md:grid-cols-4 gap-4 py-10">
 
             <div className="card cursor-pointer my-0 md:my-4 h-[15vh] md:h-[30vh] rounded-lg shadow-md flex flex-col items-center justify-center bg-white">
               <h1 className='text-xl font-bold text-center'>MURDER</h1>
@@ -226,7 +225,7 @@ const Home = () => {
         <div className="response-people bg-[#dffaf6] mt-10">
           <h1 className='text-center font-bold text-3xl py-5'>Response From People On Complaints</h1>
           <p className='text-center font-light'>At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum id ...</p>
-          <div class="grid w-[85%] mx-auto cols-1 md:grid-cols-3 gap-4 py-10">
+          <div className="grid w-[85%] mx-auto cols-1 md:grid-cols-3 gap-4 py-10">
 
             <div className="card cursor-pointer my-0 md:my-4 rounded-lg shadow-md bg-white py-7">
               <div className="desc px-5 py-5">

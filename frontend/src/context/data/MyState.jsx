@@ -159,6 +159,7 @@ function MyState(props) {
     }
 
     const userData = async () => {
+        if(localStorage.getItem('token')){
             const res = await fetch(`http://localhost:5000/api/auth/getuser`, {
                 method: 'GET',
                 headers: {
@@ -170,6 +171,7 @@ function MyState(props) {
             let userData = await res.json();
             // console.log(userData);
             setUser(userData);
+        }
     }
 
     const likeHandler = async (id) => {
@@ -242,7 +244,7 @@ function MyState(props) {
     const getAllUsers = async () => {
         setLoading(true);
         try {
-            const res = await fetch("http://localhost:5000/api/auth/getuser", {
+            const res = await fetch("http://localhost:5000/api/auth/getalluser", {
                 method: `GET`,
                 headers: {
                     'Content-Type': "application/json", // Corrected typo here
@@ -271,9 +273,6 @@ function MyState(props) {
             console.log(error);
         }
     }
-
-    
-
 
     return (
         <myContext.Provider value={ { title, setTitle, desc, setDesc, image, setImage, allNotes, setAllNotes, searchNotes, setSearchNotes, search, setSearch, addPostHandle, getAllPosts, user, setUser, userData, likeHandler, disLikeHandler, showCommentModal, comment, getAllComments, cId, AddComment, text, setText, category, setCategory, region, setRegion, getAllUsers, allUser, setAllUser, gangrape, setGangrape, murder, setMurder, targetkilling, murderrobbery, bombblast, highway, carsnatch, bank, getAllUserComments, userscomment, north, east, west, south, central, latestPost } }>

@@ -224,7 +224,7 @@ const CrimeReports = () => {
 
           <div className="stats-bottom w-[90vw] mx-auto">
             <h1 className='text-center font-bold text-2xl'>Active Percentage</h1>
-            <div class="grid cols-1 md:grid-cols-4 gap-4 my-4" >
+            <div className="grid cols-1 md:grid-cols-4 gap-4 my-4" >
               <div>
                 <Pie data={pieData} options={pieOptions} />
               </div>

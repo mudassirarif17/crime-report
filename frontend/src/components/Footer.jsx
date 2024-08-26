@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="footer w-[92vw] mx-auto md:h-[60vh] flex flex-col justify-between">
 
         <div className="flex items-center md:h-[50vh]">
-          <div class="grid cols-1 md:grid-cols-4 gap-4 ">
+          <div className="grid cols-1 md:grid-cols-4 gap-4 ">
           <div className='my-5 md:my-0'>
               <img src={logo} alt="" />
             <p className='text-left font-light my-5'>Our Crime Monitoring Portal provides real-time crime data and empowers citizens to report incidents. Together, we enhance public safety and foster community collaboration.</p>
