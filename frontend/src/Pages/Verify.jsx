@@ -20,7 +20,7 @@ const Verify = () => {
         formdata.append('otp' , otp);
         try {
           e.preventDefault();
-          const res = await axios.post(`crime-report-three.vercel.app/api/auth/verify-otp` , formdata , {
+          const res = await axios.post(`http://localhost:5000/api/auth/verify-otp` , formdata , {
             headers : {"Content-Type" : "application/json"}
           });
           console.log(res)

@@ -35,7 +35,7 @@ const CrimeReports = () => {
   }, []);
 
   const pieData = {
-    labels: ['Malir' , 'Korangi' , 'East', 'South', 'West' , 'Central'],
+    labels: ['Malir', 'East', 'South', 'West' , 'Central'],
     datasets: [
       {
         label: 'All Users',

@@ -3,6 +3,7 @@ import logo from "../assets/logo.png";
 import upper from "../assets/uperimage.png";
 import back from "../assets/backimage.png";
 import { useNavigate } from 'react-router';
+import {Link} from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,7 +18,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`crime-report-three.vercel.app/api/auth/login`, {
+      const res = await fetch(`http://localhost:5000/api/auth/login`, {
         method: "POST",
         headers: {
           'Content-Type': "application/json"
@@ -107,6 +108,11 @@ const Login = () => {
               <div className='my-8 ml-3'>
                 <button onClick={ loginHandle } className='bg-[#309689] text-white w-[95%] md:w-[73%] py-2 rounded-lg text-lg font-semibold'>Login</button>
               </div>
+
+              <div className='my-8'>
+                <p className='text-[#309689] hover:text-[#143b36] md:w-[80%] text-center cursor-pointer'><Link to='/sign-up'>Create an Account / Signup</Link></p>
+              </div>
+
             </div>
           </div>
 
